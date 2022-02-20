@@ -5,8 +5,10 @@ import Logo from "./logo/Logo";
 import Editor from "./Components/Editor";
 import Infos from "./Components/İnfos";
 import { motion, AnimatePresence } from "framer-motion";
+import Overlay from "./Components/Overlay";
 
 function App() {
+  // STATE
   const [colors, setColors] = useState({
     black: "#111218",
     darkGray: "#191C24",
@@ -17,40 +19,29 @@ function App() {
   const [Info, setInfo] = useState([]);
 
   const [AnimateLogo, setAnimateLogo] = useState(false);
+  // STATE
 
   // STYLES
   const MainWrapper = styled.div`
     width: 100vw;
   `;
-
-  const Overlay = styled(motion.div)`
-    background-color: ${colors.white};
-    width: 400%;
-    height: 400%;
-    z-index: -10;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 100%;
-    background-color: ${colors.black};
-  `;
   // STYLES
+
+  // FUNCTİON TO REMOVE THE TRANSFORM PROPERTY İN ORDER TO FİX THE POSİTİONİNG İSSUE
+  const handlePos = () => {
+    let transformedDiv = document.querySelector("#rmvt");
+    transformedDiv.style.transform = "none";
+  };
+  // FUNCTİON TO REMOVE THE TRANSFORM PROPERTY İN ORDER TO FİX THE POSİTİONİNG İSSUE
 
   return (
     <MainWrapper onClick={() => setAnimateLogo(true)}>
       {AnimateLogo ? (
         <motion.div key="131344">
-          <Overlay
-            onTransitionEnd={(e) => console.log(e.target)}
-            initial={{ x: 0, y: 0 }}
-            animate={{
-              y: "-500vh",
-              x: -700,
-              scale: 0,
-              transition: { duration: 2, delay: 0, ease: "anticipate" },
-            }}
-          ></Overlay>
+          <Overlay colors={colors} />
           <motion.div
+            id="rmvt"
+            onAnimationComplete={handlePos}
             initial={{ x: "300vw" }}
             animate={{ x: 0, transition: { duration: 2, delay: 1 } }}
           >
