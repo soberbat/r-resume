@@ -7,12 +7,12 @@ function Overlay({ colors }) {
   // STYLES
   const Overlay = styled(motion.div)`
     background-color: ${colors.white};
-    width: 700%;
-    height: 700%;
-    z-index: -10;
+    width: 200%;
+    height: 200%;
+    z-index: 100;
     position: absolute;
-    top: 0;
     left: 0;
+    bottom: 0;
     border-radius: 100%;
     background-color: ${colors.black};
   `;
@@ -23,16 +23,17 @@ function Overlay({ colors }) {
         <Overlay
           onAnimationComplete={(e) => {
             console.log(e);
-            setİsVibisble(false);
+            // setİsVibisble(false);
           }}
           //   initial={{ x: 0, y: 0 }}
           animate={{
-            y: "100vh",
+            y: "-100vh",
             x: "100vw",
-            scale: 0,
-            transition: { duration: 5, delay: 0, ease: "easeInOut" },
+            transition: { duration: 2, delay: 0, ease: "easeInOut" },
           }}
-        ></Overlay>
+        >
+          a
+        </Overlay>
       ) : null}
     </>
   );
