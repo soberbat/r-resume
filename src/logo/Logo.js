@@ -8,8 +8,8 @@ function Logo({ AnimateLogo }) {
 
   const childVar = {
     initial: {
-      x: "38vw",
-      y: "25vh",
+      x: "180%",
+      y: -200,
       width: "20%",
     },
     animated: {
@@ -17,7 +17,7 @@ function Logo({ AnimateLogo }) {
       y: 0,
       width: "3%",
       transition: {
-        duration: 1,
+        duration: 0.7,
       },
     },
     exit: {

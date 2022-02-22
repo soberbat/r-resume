@@ -42,8 +42,15 @@ function App() {
           <motion.div
             id="rmvt"
             onAnimationComplete={handlePos}
-            initial={{ x: "300vw" }}
-            animate={{ x: 0, transition: { duration: 2, delay: 1 } }}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              transition: {
+                delay: 1.7,
+                duration: 0.8,
+                ease: "easeInOut",
+              },
+            }}
           >
             <Infos colors={colors} setInfos={setInfo} />
             <Editor colors={colors} Info={Info} />{" "}

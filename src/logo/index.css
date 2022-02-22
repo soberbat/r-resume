@@ -8,12 +8,13 @@
 
 #root {
   position: relative;
+  overflow-x: hidden;
 }
 
 .logo-svg {
   width: 3%;
   position: fixed;
-  top: 10px;
+  top: 45%;
   z-index: 90;
   left: 10px;
 }
