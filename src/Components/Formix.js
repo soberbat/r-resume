@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import Additionals from "./Additionals";
 
-function Formix({ colors }) {
+function Formix({ colors, formik }) {
   // ──────────────────────────────────────── I ──────────
 
   const PersonalDetails = styled.div`
@@ -35,12 +35,12 @@ function Formix({ colors }) {
     font-weight: 600;
   `;
 
-  const İnput = styled(motion.input)`
+  const İnput = styled.input`
     background-color: ${colors.grayMid};
     border-radius: 3px;
     border: none;
     color: ${colors.gray};
-    padding: 0.84rem 0.4rem;
+    padding: 0.9rem 0.4rem;
     width: 100%;
     text-indent: 10px;
     font-weight: 400;
@@ -53,7 +53,7 @@ function Formix({ colors }) {
     font-size: 0.8rem;
     color: ${colors.lightGray};
     margin-bottom: 0.5rem;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.1px;
   `;
 
@@ -65,7 +65,11 @@ function Formix({ colors }) {
       <div>
         <İnputContainer>
           <Label>Wanted Job Title</Label>
-          <İnput />
+          <İnput
+            value={formik.values.job}
+            name="job"
+            onChange={formik.handleChange}
+          />
         </İnputContainer>
         <İnputContainer>
           <Label>City</Label>
@@ -75,7 +79,7 @@ function Formix({ colors }) {
       <div>
         <İnputContainer>
           <Label>First Name</Label>
-          <İnput />
+          <İnput name="name" id="name" />
         </İnputContainer>
         <İnputContainer>
           <Label>Last Name</Label>
@@ -92,7 +96,7 @@ function Formix({ colors }) {
           <İnput />
         </İnputContainer>
       </div>
-      <Additionals colors={colors} />
+      <Additionals formik={formik} colors={colors} />
     </PersonalDetails>
   );
 }

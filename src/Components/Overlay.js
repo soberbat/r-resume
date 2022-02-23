@@ -30,7 +30,7 @@ function Overlay({ colors }) {
               opacity: 1,
               transition: { duration: 1, delay: 0.4, ease: "easeIn" },
             }}
-            exit={{ opacity: 0, transition: { duration: 0.6 } }}
+            exit={{ opacity: 0, transition: { duration: 1 } }}
           ></Overlay>
         ) : null}
       </AnimatePresence>

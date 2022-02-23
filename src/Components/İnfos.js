@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import Formix from "./Formix";
 
-function Infos({ colors, sides }) {
+function Infos({ colors, sides, formik }) {
   // ──────────────────────────────────────── Styled Components ──────────
   const Wrapper = styled(motion.div)`
     background-color: ${colors.white};
     width: 50%;
     color: blue;
-    padding: 5rem 5rem;
+    padding: 5rem 2.7rem;
     color: white;
     font-size: 20px;
     font-family: "Ubuntu", sans-serif;
@@ -64,7 +64,7 @@ function Infos({ colors, sides }) {
         </ItemContainer>
         <ProgressBar></ProgressBar>
       </ProgressBarContainer>
-      <Formix colors={colors} />
+      <Formix formik={formik} colors={colors} />
     </Wrapper>
   );
 }

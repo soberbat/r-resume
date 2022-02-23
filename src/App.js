@@ -6,20 +6,20 @@ import Editor from "./Components/Editor";
 import Infos from "./Components/İnfos";
 import { motion, AnimatePresence } from "framer-motion";
 import Overlay from "./Components/Overlay";
+import { useFormik } from "formik";
 
 function App() {
   // STATE
   const [colors, setColors] = useState({
     black: "#111218",
     darkGray: "#191C24",
-    gray: "#292F36",
+    gray: "#646d83",
     grayMid: "#f0f2f9",
     lightGray: "#525252",
     orange: "#EF8354",
     white: "#FDFFFC",
   });
   const [Info, setInfo] = useState([]);
-
   const [AnimateLogo, setAnimateLogo] = useState(false);
   // STATE
 
@@ -37,6 +37,21 @@ function App() {
   };
   // FUNCTİON TO REMOVE THE TRANSFORM PROPERTY İN ORDER TO FİX THE POSİTİONİNG İSSUE
 
+  // ──────────────────────────────────────── FORMİK ──────────
+
+  const formik = useFormik({
+    initialValues: {
+      job: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      country: "alooog",
+    },
+  });
+
+  // ──────────────────────────────────────────────────
+
   return (
     <MainWrapper onClick={() => setAnimateLogo(true)}>
       {AnimateLogo ? (
@@ -47,18 +62,18 @@ function App() {
             onAnimationComplete={() => {
               handlePos();
             }}
-            initial={{ opacity: 0 }}
+            initial={{ x: "100%" }}
             animate={{
-              opacity: 1,
+              x: 0,
               transition: {
-                delay: 2,
-                duration: 0.4,
+                delay: 1.8,
+                duration: 0.8,
                 ease: "easeInOut",
               },
             }}
           >
-            <Infos colors={colors} setInfos={setInfo} />
-            <Editor colors={colors} Info={Info} />{" "}
+            <Infos formik={formik} colors={colors} setInfos={setInfo} />
+            <Editor formik={formik} colors={colors} Info={Info} />{" "}
           </motion.div>
         </motion.div>
       ) : null}

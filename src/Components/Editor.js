@@ -6,6 +6,7 @@ function Editor({ colors }) {
   // STYLES
   const Wrapper = styled(motion.div)`
     background-color: ${colors.gray};
+
     width: 50%;
     height: 100vh;
     position: fixed;
@@ -25,19 +26,22 @@ function Editor({ colors }) {
     border-radius: 0.4rem;
     padding: 1.4rem 3rem;
     width: 100%;
-    box-shadow: 0px 0px 20px 2px ${colors.black};
+
+    box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5);
   `;
   const Button = styled.button`
     background-color: ${colors.orange};
     padding: 0.9rem 2.1rem;
     border: none;
+
     border-radius: 0.2rem;
-    color: white;
+    color: ${colors.white};
     font-size: 1rem;
     font-family: "Ubuntu", sans-serif;
     font-weight: 700;
     align-self: flex-end;
-    box-shadow: 0px 0px 5px 1px ${colors.darkGray};
+
+    box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
   `;
 
   //   const CloseEditor = styled.span`

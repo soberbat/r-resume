@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 
-function Additionals({ colors }) {
+function Additionals({ colors, formik }) {
   const [isAnimated, setAnimate] = useState(false);
   const İnputContainer = styled.div`
     display: flex;
@@ -16,7 +16,7 @@ function Additionals({ colors }) {
     border-radius: 3px;
     border: none;
     color: ${colors.gray};
-    padding: 0.84rem 0.4rem;
+    padding: 0.9rem 0.4rem;
     width: 100%;
     text-indent: 10px;
     font-weight: 400;
@@ -29,7 +29,7 @@ function Additionals({ colors }) {
     font-size: 0.8rem;
     color: ${colors.lightGray};
     margin-bottom: 0.5rem;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.1px;
   `;
 
@@ -62,7 +62,7 @@ function Additionals({ colors }) {
             <motion.div key={"1312313"}>
               <İnputContainer>
                 <Label>Wanted Job Title</Label>
-                <İnput />
+                <İnput value={formik.values.country} name="country" />
               </İnputContainer>
               <İnputContainer>
                 <Label>City</Label>
