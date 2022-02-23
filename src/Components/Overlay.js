@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Overlay({ colors }) {
   const [isVisible, setİsVibisble] = useState(true);
@@ -17,22 +17,23 @@ function Overlay({ colors }) {
   // STYLES
   return (
     <>
-      {isVisible ? (
-        <Overlay
-          onAnimationComplete={(e) => {
-            console.log(e);
-            // setTimeout(setİsVibisble(false), 1000);
-          }}
-          initial={{ width: 0 }}
-          animate={{
-            width: "100%",
-            opacity: 1,
-            transition: { duration: 0.8, delay: 0.4, ease: "easeIn" },
-          }}
-        >
-          a
-        </Overlay>
-      ) : null}
+      <AnimatePresence exitBeforeEnter>
+        {isVisible ? (
+          <Overlay
+            onAnimationComplete={(e) => {
+              console.log(e);
+              setTimeout(setİsVibisble(false), 1000);
+            }}
+            initial={{ x: 0, y: 0, width: 0 }}
+            animate={{
+              width: "100%",
+              opacity: 1,
+              transition: { duration: 1, delay: 0.4, ease: "easeIn" },
+            }}
+            exit={{ opacity: 0, transition: { duration: 0.6 } }}
+          ></Overlay>
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }

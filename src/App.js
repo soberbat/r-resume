@@ -13,6 +13,8 @@ function App() {
     black: "#111218",
     darkGray: "#191C24",
     gray: "#292F36",
+    grayMid: "#f0f2f9",
+    lightGray: "#525252",
     orange: "#EF8354",
     white: "#FDFFFC",
   });
@@ -24,6 +26,7 @@ function App() {
   // STYLES
   const MainWrapper = styled.div`
     width: 100vw;
+    height: 100vh;
   `;
   // STYLES
 
@@ -41,13 +44,15 @@ function App() {
           <Overlay colors={colors} />
           <motion.div
             id="rmvt"
-            onAnimationComplete={handlePos}
+            onAnimationComplete={() => {
+              handlePos();
+            }}
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
               transition: {
-                delay: 1.7,
-                duration: 0.8,
+                delay: 2,
+                duration: 0.4,
                 ease: "easeInOut",
               },
             }}

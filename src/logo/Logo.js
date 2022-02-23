@@ -13,7 +13,7 @@ function Logo({ AnimateLogo }) {
       width: "20%",
     },
     animated: {
-      x: 0,
+      x: 30,
       y: 0,
       width: "3%",
       transition: {
@@ -22,7 +22,8 @@ function Logo({ AnimateLogo }) {
     },
     exit: {
       x: -150,
-      transition: { duration: 1.2 },
+      ease: "easeInOut",
+      transition: { duration: 1, delay: 1.6 },
     },
   };
 
@@ -33,6 +34,9 @@ function Logo({ AnimateLogo }) {
           exit="exit"
           key="asas"
           onClick={() => setVisibility(true)}
+          onAnimationComplete={() => {
+            setVisibility(true);
+          }}
           variants={childVar}
           animate={AnimateLogo ? "animated" : ""}
           initial="initial"

@@ -9,7 +9,7 @@ function Editor({ colors }) {
     width: 50%;
     height: 100vh;
     position: fixed;
-    padding: 0rem 7.7rem;
+    padding: 0rem 8rem;
     padding-top: 2rem;
     padding-bottom: 1rem;
     right: 0;
