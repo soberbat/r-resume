@@ -6,7 +6,6 @@ import Editor from "./Components/Editor";
 import Infos from "./Components/İnfos";
 import { motion, AnimatePresence } from "framer-motion";
 import Overlay from "./Components/Overlay";
-import { useFormik } from "formik";
 
 function App() {
   // STATE
@@ -37,21 +36,6 @@ function App() {
   };
   // FUNCTİON TO REMOVE THE TRANSFORM PROPERTY İN ORDER TO FİX THE POSİTİONİNG İSSUE
 
-  // ──────────────────────────────────────── FORMİK ──────────
-
-  const formik = useFormik({
-    initialValues: {
-      job: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      country: "alooog",
-    },
-  });
-
-  // ──────────────────────────────────────────────────
-
   return (
     <MainWrapper onClick={() => setAnimateLogo(true)}>
       {AnimateLogo ? (
@@ -72,8 +56,8 @@ function App() {
               },
             }}
           >
-            <Infos formik={formik} colors={colors} setInfos={setInfo} />
-            <Editor formik={formik} colors={colors} Info={Info} />{" "}
+            <Infos colors={colors} setInfos={setInfo} />
+            <Editor colors={colors} Info={Info} />{" "}
           </motion.div>
         </motion.div>
       ) : null}

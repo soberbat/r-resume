@@ -2,8 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import Formix from "./Formix";
+import { useSelector } from "react-redux";
 
-function Infos({ colors, sides, formik }) {
+function Infos({ colors, sides }) {
+  const state = useSelector((state) => state.form);
+
+  console.log(state);
+
   // ──────────────────────────────────────── Styled Components ──────────
   const Wrapper = styled(motion.div)`
     background-color: ${colors.white};
@@ -42,7 +47,7 @@ function Infos({ colors, sides, formik }) {
 
     span span {
       color: gray;
-      font-size: 0.8rem;
+      font-size: 1.1rem;
       margin-left: 0.4rem;
     }
   `;
@@ -53,7 +58,7 @@ function Infos({ colors, sides, formik }) {
 
   return (
     <Wrapper>
-      <ProgressBarContainer>
+      {/* <ProgressBarContainer>
         <ItemContainer>
           <span>
             27% <span>Profile Completeness</span>
@@ -63,8 +68,8 @@ function Infos({ colors, sides, formik }) {
           </span>
         </ItemContainer>
         <ProgressBar></ProgressBar>
-      </ProgressBarContainer>
-      <Formix formik={formik} colors={colors} />
+      </ProgressBarContainer> */}
+      <Formix colors={colors} />
     </Wrapper>
   );
 }

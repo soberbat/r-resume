@@ -3,7 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import Additionals from "./Additionals";
 
-function Formix({ colors, formik }) {
+import { useSelector, useDispatch } from "react-redux";
+import { addToStore } from "../store/deneme";
+
+function Formix({ colors }) {
+  const deneme = useSelector((state) => state);
+  const dispatch = useDispatch();
   // ──────────────────────────────────────── I ──────────
 
   const PersonalDetails = styled.div`
@@ -59,6 +64,10 @@ function Formix({ colors, formik }) {
 
   // ──────────────────────────────────────────────────
 
+  // ──────────────────────────────────────── FORMİK ──────────
+
+  // ──────────────────────────────────────────────────
+
   return (
     <PersonalDetails>
       <Header defaultValue={"Personal Details"} />
@@ -66,9 +75,11 @@ function Formix({ colors, formik }) {
         <İnputContainer>
           <Label>Wanted Job Title</Label>
           <İnput
-            value={formik.values.job}
+            id="jobTitle"
             name="job"
-            onChange={formik.handleChange}
+            onChange={(e) => {
+              dispatch(addToStore({ [e.target.id]: e.target.value }));
+            }}
           />
         </İnputContainer>
         <İnputContainer>
@@ -96,7 +107,7 @@ function Formix({ colors, formik }) {
           <İnput />
         </İnputContainer>
       </div>
-      <Additionals formik={formik} colors={colors} />
+      {/* <Additionals formik={formik} colors={colors} /> */}
     </PersonalDetails>
   );
 }

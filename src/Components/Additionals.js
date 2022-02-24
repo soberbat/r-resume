@@ -62,7 +62,7 @@ function Additionals({ colors, formik }) {
             <motion.div key={"1312313"}>
               <İnputContainer>
                 <Label>Wanted Job Title</Label>
-                <İnput value={formik.values.country} name="country" />
+                <İnput value={formik.values.country} name />
               </İnputContainer>
               <İnputContainer>
                 <Label>City</Label>

@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 function Editor({ colors }) {
+  const state = useSelector((state) => state.forms);
+  console.log(state.jobTitle);
   // STYLES
   const Wrapper = styled(motion.div)`
     background-color: ${colors.gray};
@@ -61,7 +64,7 @@ function Editor({ colors }) {
   return (
     <Wrapper>
       <PageToPrint>
-        <h1>sfsf</h1>
+        <h1> title: {state.jobTitle} </h1>
       </PageToPrint>
       <Button>Download PDF</Button>
       {/* <CloseEditor>X</CloseEditor> */}
