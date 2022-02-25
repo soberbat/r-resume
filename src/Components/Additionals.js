@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { addToStore } from "../store/textSlice";
 
-function Additionals({ colors, formik }) {
+function Additionals({ colors }) {
+  const dispatch = useDispatch();
   const [isAnimated, setAnimate] = useState(false);
   const İnputContainer = styled.div`
     display: flex;
@@ -16,7 +19,7 @@ function Additionals({ colors, formik }) {
     border-radius: 3px;
     border: none;
     color: ${colors.gray};
-    padding: 0.9rem 0.4rem;
+    padding: 1rem 0.4rem;
     width: 100%;
     text-indent: 10px;
     font-weight: 400;
@@ -61,40 +64,70 @@ function Additionals({ colors, formik }) {
           >
             <motion.div key={"1312313"}>
               <İnputContainer>
-                <Label>Wanted Job Title</Label>
-                <İnput value={formik.values.country} name />
+                <Label>City</Label>
+                <İnput
+                  id="city"
+                  onChange={(e) => {
+                    dispatch(addToStore({ [e.target.id]: e.target.value }));
+                  }}
+                />
               </İnputContainer>
               <İnputContainer>
-                <Label>City</Label>
-                <İnput />
+                <Label>Country</Label>
+                <İnput
+                  id="city"
+                  onChange={(e) => {
+                    dispatch(addToStore({ [e.target.id]: e.target.value }));
+                  }}
+                />
               </İnputContainer>
             </motion.div>
             <motion.div key="w42424">
               <İnputContainer>
-                <Label>First Name</Label>
-                <İnput />
+                <Label>Adress</Label>
+                <İnput
+                  id="city"
+                  onChange={(e) => {
+                    dispatch(addToStore({ [e.target.id]: e.target.value }));
+                  }}
+                />
               </İnputContainer>
               <İnputContainer>
                 <Label>Last Name</Label>
-                <İnput />
+                <İnput
+                  id="city"
+                  onChange={(e) => {
+                    dispatch(addToStore({ [e.target.id]: e.target.value }));
+                  }}
+                />
               </İnputContainer>
             </motion.div>
             <motion.div key="xfsfsf">
               <İnputContainer>
                 <Label>Email</Label>
-                <İnput />
+                <İnput
+                  id="city"
+                  onChange={(e) => {
+                    dispatch(addToStore({ [e.target.id]: e.target.value }));
+                  }}
+                />
               </İnputContainer>
               <İnputContainer>
                 <Label>Phone</Label>
-                <İnput />
+                <İnput
+                  id="city"
+                  onChange={(e) => {
+                    dispatch(addToStore({ [e.target.id]: e.target.value }));
+                  }}
+                />
               </İnputContainer>
             </motion.div>
           </Additional>
         ) : null}
       </AnimatePresence>
       <motion.span
-        style={{ color: "#00CEE0" }}
-        whileHover={{ color: "#00A8B8", transition: { duration: 0.1 } }}
+        style={{ color: "#4694D8", fontWeight: "600" }}
+        whileHover={{ color: "#89BBE6", transition: { duration: 0.1 } }}
         onClick={() => {
           setAnimate((prev) => !prev);
         }}

@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 function Editor({ colors }) {
-  const state = useSelector((state) => state.forms);
-  console.log(state.jobTitle);
+  const state = useSelector((state) => state.forms.values);
+  console.log(state);
   // STYLES
   const Wrapper = styled(motion.div)`
     background-color: ${colors.gray};
@@ -33,7 +33,7 @@ function Editor({ colors }) {
     box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5);
   `;
   const Button = styled.button`
-    background-color: ${colors.orange};
+    background-color: ${colors.darkGray};
     padding: 0.9rem 2.1rem;
     border: none;
 

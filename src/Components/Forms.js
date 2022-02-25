@@ -4,10 +4,9 @@ import styled from "styled-components";
 import Additionals from "./Additionals";
 
 import { useSelector, useDispatch } from "react-redux";
-import { addToStore } from "../store/deneme";
+import { addToStore } from "../store/textSlice";
 
-function Formix({ colors }) {
-  const deneme = useSelector((state) => state);
+function Forms({ colors }) {
   const dispatch = useDispatch();
   // ──────────────────────────────────────── I ──────────
 
@@ -45,7 +44,7 @@ function Formix({ colors }) {
     border-radius: 3px;
     border: none;
     color: ${colors.gray};
-    padding: 0.9rem 0.4rem;
+    padding: 1rem 0.4rem;
     width: 100%;
     text-indent: 10px;
     font-weight: 400;
@@ -55,16 +54,21 @@ function Formix({ colors }) {
   `;
 
   const Label = styled.label`
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: ${colors.lightGray};
     margin-bottom: 0.5rem;
-    font-weight: 400;
-    letter-spacing: 0.1px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
   `;
 
-  // ──────────────────────────────────────────────────
-
-  // ──────────────────────────────────────── FORMİK ──────────
+  const ToolTip = styled.span`
+    border-radius: 500px;
+    padding: 0.001rem 0.3rem;
+    border: 1.4px #4694d8 solid;
+    color: black;
+    margin-left: 0.3rem;
+    font-weight: 700;
+  `;
 
   // ──────────────────────────────────────────────────
 
@@ -73,10 +77,11 @@ function Formix({ colors }) {
       <Header defaultValue={"Personal Details"} />
       <div>
         <İnputContainer>
-          <Label>Wanted Job Title</Label>
+          <Label>
+            Wanted Job Title <ToolTip>?</ToolTip>
+          </Label>
           <İnput
-            id="jobTitle"
-            name="job"
+            id="job-title"
             onChange={(e) => {
               dispatch(addToStore({ [e.target.id]: e.target.value }));
             }}
@@ -84,32 +89,57 @@ function Formix({ colors }) {
         </İnputContainer>
         <İnputContainer>
           <Label>City</Label>
-          <İnput />
+          <İnput
+            id="city"
+            onChange={(e) => {
+              dispatch(addToStore({ [e.target.id]: e.target.value }));
+            }}
+          />
         </İnputContainer>
       </div>
       <div>
         <İnputContainer>
           <Label>First Name</Label>
-          <İnput name="name" id="name" />
+          <İnput
+            id="name"
+            onChange={(e) => {
+              dispatch(addToStore({ [e.target.id]: e.target.value }));
+            }}
+          />
         </İnputContainer>
         <İnputContainer>
           <Label>Last Name</Label>
-          <İnput />
+          <İnput
+            id="last-name"
+            onChange={(e) => {
+              dispatch(addToStore({ [e.target.id]: e.target.value }));
+            }}
+          />
         </İnputContainer>
       </div>
       <div>
         <İnputContainer>
           <Label>Email</Label>
-          <İnput />
+          <İnput
+            id="email"
+            onChange={(e) => {
+              dispatch(addToStore({ [e.target.id]: e.target.value }));
+            }}
+          />
         </İnputContainer>
         <İnputContainer>
           <Label>Phone</Label>
-          <İnput />
+          <İnput
+            id="phone"
+            onChange={(e) => {
+              dispatch(addToStore({ [e.target.id]: e.target.value }));
+            }}
+          />
         </İnputContainer>
       </div>
-      {/* <Additionals formik={formik} colors={colors} /> */}
+      <Additionals colors={colors} />
     </PersonalDetails>
   );
 }
 
-export default Formix;
+export default Forms;

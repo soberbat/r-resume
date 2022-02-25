@@ -12,9 +12,9 @@ function App() {
   const [colors, setColors] = useState({
     black: "#111218",
     darkGray: "#191C24",
-    gray: "#646d83",
+    gray: "#2B2E2F",
     grayMid: "#f0f2f9",
-    lightGray: "#525252",
+    lightGray: "#7B8E87",
     orange: "#EF8354",
     white: "#FDFFFC",
   });

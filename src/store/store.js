@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import deneme from "./deneme";
+import textSlice from "./textSlice";
 
 export default configureStore({
   reducer: {
-    forms: deneme,
+    forms: textSlice,
   },
 });

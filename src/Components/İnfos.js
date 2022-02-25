@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import Formix from "./Formix";
+import Forms from "./Forms";
 import { useSelector } from "react-redux";
 
 function Infos({ colors, sides }) {
@@ -69,7 +69,7 @@ function Infos({ colors, sides }) {
         </ItemContainer>
         <ProgressBar></ProgressBar>
       </ProgressBarContainer> */}
-      <Formix colors={colors} />
+      <Forms colors={colors} />
     </Wrapper>
   );
 }
