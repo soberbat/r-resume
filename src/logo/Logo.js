@@ -8,22 +8,22 @@ function Logo({ AnimateLogo }) {
 
   const childVar = {
     initial: {
-      x: "180%",
+      x: "400%",
       y: -200,
       width: "20%",
     },
     animated: {
-      x: 30,
-      y: 0,
-      width: "3%",
+      x: 100,
+
       transition: {
-        duration: 0.7,
+        duration: 1.5,
       },
     },
     exit: {
-      x: -150,
+      x: -450,
+
       ease: "easeInOut",
-      transition: { duration: 1, delay: 1.6 },
+      transition: { duration: 0.7, delay: 0.54 },
     },
   };
 

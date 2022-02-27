@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import Forms from "./Forms";
 import { useSelector } from "react-redux";
+import Summary from "./Summary";
+import EmploymentHistory from "./EmploymentHistory";
+import SectionText from "./SectionText";
 
 function Infos({ colors, sides }) {
   const state = useSelector((state) => state.form);
@@ -12,9 +15,10 @@ function Infos({ colors, sides }) {
   // ──────────────────────────────────────── Styled Components ──────────
   const Wrapper = styled(motion.div)`
     background-color: ${colors.white};
+    height: 100vh;
     width: 50%;
     color: blue;
-    padding: 5rem 2.7rem;
+    padding: 4rem 2.7rem;
     color: white;
     font-size: 20px;
     font-family: "Ubuntu", sans-serif;
@@ -58,18 +62,10 @@ function Infos({ colors, sides }) {
 
   return (
     <Wrapper>
-      {/* <ProgressBarContainer>
-        <ItemContainer>
-          <span>
-            27% <span>Profile Completeness</span>
-          </span>
-          <span>
-            8% <span>Add Job Title</span>
-          </span>
-        </ItemContainer>
-        <ProgressBar></ProgressBar>
-      </ProgressBarContainer> */}
+      <SectionText defaultVal={"Untitled"} top={true} />
       <Forms colors={colors} />
+      <Summary colors={colors} />
+      <EmploymentHistory colors={colors} />
     </Wrapper>
   );
 }

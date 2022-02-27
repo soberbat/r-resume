@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch } from "react-redux";
-import { addToStore } from "../store/textSlice";
+import { addToStore } from "../../store/textSlice";
 
 function Additionals({ colors }) {
   const dispatch = useDispatch();
@@ -24,13 +24,13 @@ function Additionals({ colors }) {
     text-indent: 10px;
     font-weight: 400;
     :focus {
-      outline: none;
+      outline: 1px solid #00cee0;
     }
   `;
 
   const Label = styled.label`
     font-size: 0.8rem;
-    color: ${colors.lightGray};
+    color: ${colors.textColor};
     margin-bottom: 0.5rem;
     font-weight: 400;
     letter-spacing: 0.1px;
@@ -57,10 +57,10 @@ function Additionals({ colors }) {
             animate={{
               height: "auto",
               opacity: 1,
-              transition: { when: "beforeChildren" },
+              transition: { duration: 0.6, when: "beforeChildren" },
             }}
             initial={{ height: 0, opacity: 0 }}
-            exit={{ height: 0 }}
+            exit={{ height: 0, transition: { duration: 0.4 } }}
           >
             <motion.div key={"1312313"}>
               <İnputContainer>
@@ -126,8 +126,8 @@ function Additionals({ colors }) {
         ) : null}
       </AnimatePresence>
       <motion.span
-        style={{ color: "#4694D8", fontWeight: "600" }}
-        whileHover={{ color: "#89BBE6", transition: { duration: 0.1 } }}
+        style={{ color: "#2b66a0", fontWeight: "600", fontSize: 14 }}
+        whileHover={{ color: "#5cb4f4", transition: { duration: 0.1 } }}
         onClick={() => {
           setAnimate((prev) => !prev);
         }}

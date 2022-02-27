@@ -4,9 +4,11 @@ import styled from "styled-components";
 import Additionals from "./Additionals";
 
 import { useSelector, useDispatch } from "react-redux";
-import { addToStore } from "../store/textSlice";
+import { addToStore } from "../../store/textSlice";
+import SectionText from "./SectionText";
 
 function Forms({ colors }) {
+  const [penİsVisible, setPenİsVisible] = useState(false);
   const dispatch = useDispatch();
   // ──────────────────────────────────────── I ──────────
 
@@ -33,10 +35,11 @@ function Forms({ colors }) {
     width: 47%;
   `;
   const Header = styled.input`
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     border: none;
     outline: none;
     font-weight: 600;
+    width: 170px;
   `;
 
   const İnput = styled.input`
@@ -48,6 +51,7 @@ function Forms({ colors }) {
     width: 100%;
     text-indent: 10px;
     font-weight: 400;
+
     :focus {
       outline: 1px solid #00cee0;
     }
@@ -55,31 +59,26 @@ function Forms({ colors }) {
 
   const Label = styled.label`
     font-size: 0.9rem;
-    color: ${colors.lightGray};
+    color: ${colors.textColor};
     margin-bottom: 0.5rem;
     font-weight: 300;
     letter-spacing: 0.3px;
   `;
 
-  const ToolTip = styled.span`
-    border-radius: 500px;
-    padding: 0.001rem 0.3rem;
-    border: 1.4px #4694d8 solid;
-    color: black;
-    margin-left: 0.3rem;
-    font-weight: 700;
+  const HeaderContainer = styled.section`
+    display: flex;
+    align-items: center;
+    justify-content: start;
   `;
 
   // ──────────────────────────────────────────────────
 
   return (
     <PersonalDetails>
-      <Header defaultValue={"Personal Details"} />
+      <SectionText defaultVal={"Personal Details"} />
       <div>
         <İnputContainer>
-          <Label>
-            Wanted Job Title <ToolTip>?</ToolTip>
-          </Label>
+          <Label>Wanted Job Title </Label>
           <İnput
             id="job-title"
             onChange={(e) => {
