@@ -10,7 +10,7 @@ import Overlay from "./Components/Overlay";
 function App() {
   // STATE
   const [colors, setColors] = useState({
-    black: "#B8B8D1",
+    black: "#93A8AC",
     darkGray: "#191C24",
     gray: "#2B2E2F",
     grayMid: "#f0f2f9",

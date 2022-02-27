@@ -10,7 +10,7 @@ export const PageToPrint = React.forwardRef((props, ref) => {
 
   const PageToPrint = styled.div`
     height: 90%;
-    background-color: ${colors.gray};
+    background-color: ${colors.white};
     border-radius: 0.4rem;
     padding: 1.4rem 3rem;
     width: 100%;

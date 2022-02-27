@@ -28,17 +28,15 @@ function Editor({ colors }) {
   `;
 
   const Button = styled.button`
-    background-color: ${colors.darkGray};
+    background-color: ${colors.white};
     padding: 0.9rem 2.1rem;
     border: none;
     border-radius: 0.2rem;
-    color: ${colors.white};
+    color: ${colors.black};
     font-size: 1rem;
     font-family: "Ubuntu", sans-serif;
     font-weight: 700;
     align-self: flex-end;
-
-    box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.5);
   `;
 
   return (

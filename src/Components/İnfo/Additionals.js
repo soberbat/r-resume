@@ -126,7 +126,7 @@ function Additionals({ colors }) {
         ) : null}
       </AnimatePresence>
       <motion.span
-        style={{ color: "#2b66a0", fontWeight: "600", fontSize: 14 }}
+        style={{ color: colors.black, fontWeight: "600", fontSize: 14 }}
         whileHover={{ color: "#5cb4f4", transition: { duration: 0.1 } }}
         onClick={() => {
           setAnimate((prev) => !prev);

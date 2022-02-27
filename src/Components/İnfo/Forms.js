@@ -10,6 +10,7 @@ import SectionText from "./SectionText";
 function Forms({ colors }) {
   const [penİsVisible, setPenİsVisible] = useState(false);
   const dispatch = useDispatch();
+
   // ──────────────────────────────────────── I ──────────
 
   const PersonalDetails = styled.div`
@@ -34,17 +35,21 @@ function Forms({ colors }) {
     align-items: flex-start;
     width: 47%;
   `;
-  const Header = styled.input`
-    font-size: 1.4rem;
-    border: none;
-    outline: none;
-    font-weight: 600;
-    width: 170px;
+
+  const FocusBorder = styled.span`
+    height: 2px;
+    background-color: #1b91f0;
+    width: 0%;
+    transition: all 0.1s ease-in;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 1px;
+    align-self: center;
   `;
 
   const İnput = styled.input`
     background-color: ${colors.grayMid};
-    border-radius: 3px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
     border: none;
     color: ${colors.gray};
     padding: 1rem 0.4rem;
@@ -53,7 +58,7 @@ function Forms({ colors }) {
     font-weight: 400;
 
     :focus {
-      outline: 1px solid #00cee0;
+      outline: none;
     }
   `;
 
@@ -65,11 +70,27 @@ function Forms({ colors }) {
     letter-spacing: 0.3px;
   `;
 
-  const HeaderContainer = styled.section`
-    display: flex;
-    align-items: center;
-    justify-content: start;
-  `;
+  // ──────────────────────────────────────────────────
+
+  // ──────────────────────────────────────── Input Props and functions ──────────
+
+  const handleFocus = (e) => {
+    const border = e.target.nextElementSibling;
+    border.style.width = "100%";
+  };
+
+  const handleBlur = (e) => {
+    const border = e.target.nextElementSibling;
+    border.style.width = "0";
+  };
+  const inputProps = {
+    onFocus: (e) => handleFocus(e),
+    onBlur: (e) => handleBlur(e),
+    onChange: (e) => {
+      dispatch(addToStore({ [e.target.id]: e.target.value }));
+    },
+    autoComplete: "off",
+  };
 
   // ──────────────────────────────────────────────────
 
@@ -79,61 +100,36 @@ function Forms({ colors }) {
       <div>
         <İnputContainer>
           <Label>Wanted Job Title </Label>
-          <İnput
-            id="job-title"
-            onChange={(e) => {
-              dispatch(addToStore({ [e.target.id]: e.target.value }));
-            }}
-          />
+          <İnput id="job-title" {...inputProps} />
+          <FocusBorder />
         </İnputContainer>
         <İnputContainer>
           <Label>City</Label>
-          <İnput
-            id="city"
-            onChange={(e) => {
-              dispatch(addToStore({ [e.target.id]: e.target.value }));
-            }}
-          />
+          <İnput id="city" {...inputProps} />
+          <FocusBorder />
         </İnputContainer>
       </div>
       <div>
         <İnputContainer>
           <Label>First Name</Label>
-          <İnput
-            id="name"
-            onChange={(e) => {
-              dispatch(addToStore({ [e.target.id]: e.target.value }));
-            }}
-          />
+          <İnput id="name" {...inputProps} />
+          <FocusBorder />
         </İnputContainer>
         <İnputContainer>
           <Label>Last Name</Label>
-          <İnput
-            id="last-name"
-            onChange={(e) => {
-              dispatch(addToStore({ [e.target.id]: e.target.value }));
-            }}
-          />
+          <İnput id="last-name" {...inputProps} />
         </İnputContainer>
       </div>
       <div>
         <İnputContainer>
           <Label>Email</Label>
-          <İnput
-            id="email"
-            onChange={(e) => {
-              dispatch(addToStore({ [e.target.id]: e.target.value }));
-            }}
-          />
+          <İnput id="email" {...inputProps} />
+          <FocusBorder />
         </İnputContainer>
         <İnputContainer>
           <Label>Phone</Label>
-          <İnput
-            id="phone"
-            onChange={(e) => {
-              dispatch(addToStore({ [e.target.id]: e.target.value }));
-            }}
-          />
+          <İnput id="phone" {...inputProps} />
+          <FocusBorder />
         </İnputContainer>
       </div>
       <Additionals colors={colors} />
