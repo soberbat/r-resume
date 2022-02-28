@@ -18,6 +18,7 @@ function App() {
     orange: "#EF8354",
     white: "#FDFFFC",
     textColor: "#838ca3",
+    highlight: "#1b91f0",
   });
   const [Info, setInfo] = useState([]);
   const [AnimateLogo, setAnimateLogo] = useState(false);

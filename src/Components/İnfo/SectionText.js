@@ -12,13 +12,14 @@ function SectionText({ defaultVal, top }) {
     margin-bottom: 0.5rem;
   `;
   const Header = styled.input`
-    font-size: ${top ? "40px" : "1.2rem"};
+    font-size: ${top ? "35px" : "1.2rem"};
     border: none;
     color: #00373d;
     outline: none;
     margin-bottom: 0.4rem;
+
     font-weight: 600;
-    width: ${top ? "140px" : "200px"};
+    width: ${top ? "150px" : "200px"};
   `;
   return (
     <HeaderContainer>

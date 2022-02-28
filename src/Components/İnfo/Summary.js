@@ -12,7 +12,7 @@ function Summary({ colors }) {
     height: 200px;
     padding: 1rem;
     background-color: ${colors.grayMid};
-    border-radius: 3px;
+    border-radius: 4px;
     border: none;
     color: ${colors.gray};
     resize: none;

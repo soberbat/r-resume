@@ -24,8 +24,18 @@ function Additionals({ colors }) {
     text-indent: 10px;
     font-weight: 400;
     :focus {
-      outline: 1px solid #00cee0;
+      outline: none;
     }
+  `;
+
+  const FocusBorder = styled.span`
+    height: 2px;
+    background-color: #1b91f0;
+    width: 0%;
+    transition: all 0.1s ease-in;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 1px;
+    align-self: center;
   `;
 
   const Label = styled.label`
@@ -48,6 +58,45 @@ function Additionals({ colors }) {
     }
   `;
 
+  const ExpandArrow = styled.img`
+    width: 0.8rem;
+  `;
+  const CollapseArrow = styled.img`
+    width: 0.8rem;
+  `;
+
+  const ExpandCollapse = styled(motion.span)`
+    color: ${colors.highlight};
+    font-weight: 500;
+    font-size: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  `;
+
+  // ──────────────────────────────────────── Input Props and functions ──────────
+
+  const handleFocus = (e) => {
+    const border = e.target.nextElementSibling;
+    border.style.width = "100%";
+  };
+
+  const handleBlur = (e) => {
+    const border = e.target.nextElementSibling;
+    border.style.width = "0";
+  };
+  const inputProps = {
+    onFocus: (e) => handleFocus(e),
+    onBlur: (e) => handleBlur(e),
+    onChange: (e) => {
+      dispatch(addToStore({ [e.target.id]: e.target.value }));
+    },
+    autoComplete: "off",
+  };
+
+  // ──────────────────────────────────────────────────
+
   return (
     <>
       <AnimatePresence>
@@ -64,76 +113,56 @@ function Additionals({ colors }) {
           >
             <motion.div key={"1312313"}>
               <İnputContainer>
-                <Label>City</Label>
-                <İnput
-                  id="city"
-                  onChange={(e) => {
-                    dispatch(addToStore({ [e.target.id]: e.target.value }));
-                  }}
-                />
+                <Label>Wanted Job Title </Label>
+                <İnput id="job-title" {...inputProps} />
+                <FocusBorder />
               </İnputContainer>
               <İnputContainer>
-                <Label>Country</Label>
-                <İnput
-                  id="city"
-                  onChange={(e) => {
-                    dispatch(addToStore({ [e.target.id]: e.target.value }));
-                  }}
-                />
+                <Label>City</Label>
+                <İnput id="city" {...inputProps} />
+                <FocusBorder />
               </İnputContainer>
             </motion.div>
             <motion.div key="w42424">
               <İnputContainer>
-                <Label>Adress</Label>
-                <İnput
-                  id="city"
-                  onChange={(e) => {
-                    dispatch(addToStore({ [e.target.id]: e.target.value }));
-                  }}
-                />
+                <Label>Wanted Job Title </Label>
+                <İnput id="job-title" {...inputProps} />
+                <FocusBorder />
               </İnputContainer>
               <İnputContainer>
-                <Label>Last Name</Label>
-                <İnput
-                  id="city"
-                  onChange={(e) => {
-                    dispatch(addToStore({ [e.target.id]: e.target.value }));
-                  }}
-                />
+                <Label>City</Label>
+                <İnput id="city" {...inputProps} />
+                <FocusBorder />
               </İnputContainer>
             </motion.div>
             <motion.div key="xfsfsf">
               <İnputContainer>
-                <Label>Email</Label>
-                <İnput
-                  id="city"
-                  onChange={(e) => {
-                    dispatch(addToStore({ [e.target.id]: e.target.value }));
-                  }}
-                />
+                <Label>Wanted Job Title </Label>
+                <İnput id="job-title" {...inputProps} />
+                <FocusBorder />
               </İnputContainer>
               <İnputContainer>
-                <Label>Phone</Label>
-                <İnput
-                  id="city"
-                  onChange={(e) => {
-                    dispatch(addToStore({ [e.target.id]: e.target.value }));
-                  }}
-                />
+                <Label>City</Label>
+                <İnput id="city" {...inputProps} />
+                <FocusBorder />
               </İnputContainer>
             </motion.div>
           </Additional>
         ) : null}
       </AnimatePresence>
-      <motion.span
-        style={{ color: colors.black, fontWeight: "600", fontSize: 14 }}
-        whileHover={{ color: "#5cb4f4", transition: { duration: 0.1 } }}
+      <ExpandCollapse
+        style={{ color: colors.gray }}
         onClick={() => {
           setAnimate((prev) => !prev);
         }}
       >
-        For more info {isAnimated ? "↑" : "↓"}
-      </motion.span>
+        For more info{" "}
+        {isAnimated ? (
+          <CollapseArrow src="https://img.icons8.com/ios-glyphs/30/000000/collapse-arrow.png" />
+        ) : (
+          <ExpandArrow src="https://img.icons8.com/ios/50/000000/expand-arrow--v1.png" />
+        )}
+      </ExpandCollapse>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { ExpandCollapseForm } from "./ExpandCollapseForm";
 import SectionText from "./SectionText";
 
 function EmploymentHistory({ colors }) {
@@ -26,6 +27,7 @@ function EmploymentHistory({ colors }) {
         Show your relevant experience(last 10 years). Use bullet points to note
         your achievements, if possible use numbers,facts.
       </Paragraph>
+      <ExpandCollapseForm colors={colors} />
     </Container>
   );
 }

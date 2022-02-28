@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import Additionals from "./Additionals";
-
 import { useSelector, useDispatch } from "react-redux";
 import { addToStore } from "../../store/textSlice";
 import SectionText from "./SectionText";
@@ -48,8 +47,8 @@ function Forms({ colors }) {
 
   const İnput = styled.input`
     background-color: ${colors.grayMid};
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
     border: none;
     color: ${colors.gray};
     padding: 1rem 0.4rem;
