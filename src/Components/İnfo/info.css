@@ -1,0 +1,14 @@
+.content-container.animate {
+  height: 500px;
+}
+
+.content-container.hidden {
+  height: 0px;
+  transition: all 4s ease-in;
+}
+
+.content-container {
+  background-color: black;
+  overflow: hidden;
+  transition: all 4s ease-in;
+}

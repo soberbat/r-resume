@@ -4,7 +4,6 @@ import { ExpandCollapseForm } from "./ExpandCollapseForm";
 import SectionText from "./SectionText";
 
 function EmploymentHistory({ colors }) {
-  const [penİsVisible, setPenİsVisible] = useState(false);
   const Container = styled.div`
     display: flex;
     flex-direction: column;
