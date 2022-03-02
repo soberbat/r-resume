@@ -69,4 +69,16 @@ function App() {
   );
 }
 
+export const colors = {
+  black: "#93A8AC",
+  darkGray: "#191C24",
+  gray: "#2B2E2F",
+  grayMid: "#f0f2f9",
+  lightGray: "#7B8E87",
+  orange: "#EF8354",
+  white: "#FDFFFC",
+  textColor: "#838ca3",
+  highlight: "#1b91f0",
+};
+
 export default App;

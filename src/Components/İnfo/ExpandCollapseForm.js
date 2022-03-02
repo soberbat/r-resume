@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
-import { AddAccordion } from "../../store/AccordionSlice";
+import { AddAccordion, SetExpandCollapse } from "../../store/AccordionSlice";
 import { Accordion } from "./Accordion";
 
 export const ExpandCollapseForm = ({ colors }) => {
   const count = useSelector((state) => state.Accordions.numberOfAccordions);
+  const Expanded = useSelector((state) => state.Accordions.ExpandCollapse);
   const dispatch = useDispatch();
   const handleAddClick = () => {
     dispatch(AddAccordion());
   };
-  console.log(count);
+  console.log(Expanded);
 
   const Wrapper = styled.div``;
   const AddContainer = styled.div`
@@ -31,12 +32,22 @@ export const ExpandCollapseForm = ({ colors }) => {
   `;
   return (
     <Wrapper>
-      {[...Array(count)].map((k, i) => (
-        <Container key={"container" + i}>
-          {" "}
-          <Accordion key={i + "Accordion"} idx={i} colors={colors} />
-        </Container>
-      ))}
+      {[...Array(count)].map((k, i) => {
+        {
+          /* dispatch(SetExpandCollapse(i)); */
+        }
+        console.log(Expanded.i);
+        return (
+          <Container key={"container" + i}>
+            <Accordion
+              key={i + "Accordion"}
+              idx={i}
+              isExpanded={Expanded[i]}
+              colors={colors}
+            />
+          </Container>
+        );
+      })}
       <AddContainer onClick={handleAddClick}>+ Add Employment</AddContainer>
     </Wrapper>
   );
