@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
+import { useSelector, useDispatch } from "react-redux";
+import { AddAccordion } from "../../store/AccordionSlice";
 import { Accordion } from "./Accordion";
 
 export const ExpandCollapseForm = ({ colors }) => {
-  const [FormCount, setFormCount] = useState(0);
+  const count = useSelector((state) => state.Accordions.numberOfAccordions);
+  const dispatch = useDispatch();
   const handleAddClick = () => {
-    setFormCount((prev) => prev + 1);
+    dispatch(AddAccordion());
   };
+  console.log(count);
+
   const Wrapper = styled.div``;
   const AddContainer = styled.div`
     padding: 0.6rem 0.8rem;
@@ -21,18 +25,16 @@ export const ExpandCollapseForm = ({ colors }) => {
       background-color: aliceblue;
     }
   `;
-
   const Container = styled.div`
     gap: 1rem;
     margin-bottom: 1rem;
   `;
-
   return (
     <Wrapper>
-      {[...Array(FormCount)].map((k, i) => (
+      {[...Array(count)].map((k, i) => (
         <Container key={"container" + i}>
           {" "}
-          <Accordion key={i} colors={colors} />
+          <Accordion key={i + "Accordion"} idx={i} colors={colors} />
         </Container>
       ))}
       <AddContainer onClick={handleAddClick}>+ Add Employment</AddContainer>

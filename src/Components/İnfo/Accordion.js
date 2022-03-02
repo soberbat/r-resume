@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
+import { RemoveAccordion } from "../../store/AccordionSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const ContentContainer = styled.div`
   height: ${(props) => (props.isExpanded ? "500px" : "0px")};
@@ -27,7 +28,6 @@ const ExpandArrow = styled.img`
 const CollapseArrow = styled.img`
   width: 0.8rem;
 `;
-
 const ExpandCollapse = styled(motion.span)`
   color: blue;
   font-weight: 500;
@@ -50,26 +50,29 @@ const Deleteİmg = styled.img`
   transition: all 0.5s ease-in;
 `;
 
-export const Accordion = ({ colors }) => {
+export const Accordion = ({ colors, idx }) => {
   const [isExpanded, setİsExpanded] = useState(false);
   const [isVisible, setİsVisible] = useState(true);
   const [ContainerExist, setİsContainerExist] = useState(true);
+  const count = useSelector((state) => state.Accordions.numberOfAccordions);
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
+    dispatch(RemoveAccordion());
     setİsVisible(!isVisible);
     setİsContainerExist(!ContainerExist);
     console.log("dhanana");
   };
-
   const imgProps = {
     src: "https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-lineal-kiranshastry.png",
     onClick: handleDelete,
   };
-
   const contProps = {
     ContainerExist: ContainerExist,
     isVisible: isVisible,
   };
+
+  console.log(idx);
 
   return (
     <Container {...contProps}>
