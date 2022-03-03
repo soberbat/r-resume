@@ -1,18 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 export const textSlice = createSlice({
   name: "textSlice",
   initialState: {
-    values: { ara: "" },
+    values: {},
+    countedWords: { textAreaEmploymentHistoryCount: 0 },
   },
   reducers: {
     addToStore: (state, action) => {
-      console.log(action.payload);
       state.values = { ...state.values, ...action.payload };
+    },
+    countWords: (state, action) => {
+      state.countedWords = {
+        ...state.countedWords,
+        ...action.payload,
+      };
     },
   },
 });
 
-export const { addToStore } = textSlice.actions;
+export const { addToStore, countWords } = textSlice.actions;
 
 export default textSlice.reducer;

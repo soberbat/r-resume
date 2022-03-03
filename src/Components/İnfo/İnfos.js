@@ -10,8 +10,6 @@ import SectionText from "./SectionText";
 function Infos({ colors, sides }) {
   const state = useSelector((state) => state.form);
 
-  console.log(state);
-
   // ──────────────────────────────────────── Styled Components ──────────
   const Wrapper = styled(motion.div)`
     background-color: ${colors.white};

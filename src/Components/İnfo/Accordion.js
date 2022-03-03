@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { RemoveAccordion, SetExpandCollapse } from "../../store/AccordionSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { addToStore } from "../../store/textSlice";
@@ -14,8 +14,9 @@ const Container = styled.div`
   padding: 0.3rem 0.4rem;
   color: black;
   position: relative;
-  opacity: ${(props) => (props.isVisible ? "100" : "0")};
-  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s all;
+
+  transform: ${(props) => (props.isVisible ? "" : "TranslateX(-1200px)")};
+  transition: ease-in-out 0.4s all;
   :hover img {
     opacity: 100;
   }
@@ -51,19 +52,37 @@ const Deleteİmg = styled.img`
   opacity: 0;
   transition: all 0.5s ease-in;
 `;
+
+const ContentContainer = styled(motion.div)`
+  height: ${(props) => (props.Expanded ? "550px" : "0px")};
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 1rem;
+  transition: ease-in-out 0.5s all;
+  > div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  > section {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 //STYLES
 
-export const Accordion = ({ colors, isExpanded, idx }) => {
-  const [TextAreaCount, setTextAreaCount] = useState(0);
+export const Accordion = ({ colors, id }) => {
+  console.log(id);
   const [isVisible, setİsVisible] = useState(true);
+  const [Expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
   const handleDelete = () => {
     setİsVisible(!isVisible);
-    setTimeout(() => dispatch(RemoveAccordion()), 400);
+    setTimeout(() => dispatch(RemoveAccordion(id)), 500);
   };
-  const handleExpandCollapse = () => {
-    dispatch(SetExpandCollapse(idx));
-  };
+
   const imgProps = {
     src: "https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-lineal-kiranshastry.png",
     onClick: handleDelete,
@@ -88,9 +107,7 @@ export const Accordion = ({ colors, isExpanded, idx }) => {
     },
     autoComplete: "off",
   };
-  const calculate = (e) => {
-    setTextAreaCount((prev) => prev + 1);
-  };
+
   //FORMS
 
   const İnputContainer = styled.div`
@@ -133,50 +150,24 @@ export const Accordion = ({ colors, isExpanded, idx }) => {
     font-weight: 300;
     letter-spacing: 0.3px;
   `;
-  const ContentContainer = styled.div`
-    height: ${(props) => (props.isExpanded ? "auto" : "0px")};
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 0 1rem;
-    transition: all 0.6s ease-in-out;
-    > div {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    > section {
-      display: flex;
-      flex-direction: column;
-    }
-  `;
-
-  const MiniCont2 = styled.div`
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 1rem;
-    align-items: center;
-    justify-content: space-between;
-  `;
 
   //FORMS
-
   return (
     <Container {...contProps}>
       <Deleteİmg {...imgProps}></Deleteİmg>
       <ExpandCollapse
         style={{ color: colors.gray, fontSize: "1rem" }}
-        onClick={handleExpandCollapse}
+        onClick={() => setExpanded((prev) => !prev)}
       >
-        (Not Specified ds)
-        {isExpanded ? (
+        {id}
+        {Expanded ? (
           <CollapseArrow src="https://img.icons8.com/ios-glyphs/30/000000/collapse-arrow.png" />
         ) : (
           <ExpandArrow src="https://img.icons8.com/ios/50/000000/expand-arrow--v1.png" />
         )}
       </ExpandCollapse>
-      <ContentContainer isExpanded={isExpanded}>
+
+      <ContentContainer Expanded={Expanded}>
         <div>
           <İnputContainer>
             <Label>Wanted Job Title </Label>
@@ -202,28 +193,9 @@ export const Accordion = ({ colors, isExpanded, idx }) => {
           </İnputContainer>
         </div>
         <section>
-          <TextArea colors={colors} />
-          <MiniCont2>
-            <Label>
-              Recruiter Tip : write 200+ characters to increase interview
-              chances{" "}
-            </Label>
-            <Label> {TextAreaCount} /200+</Label>
-          </MiniCont2>
+          <TextArea key={"mykey"} />
         </section>
       </ContentContainer>
     </Container>
   );
 };
-
-// const obj = { 0: true, 1: false, 2: true, 3: false };
-// let newOne = Object.entries(obj).map(([key, value]) => {
-//   console.log(`${key}: ${value}`);
-//   value = value ? false : value;
-//   return [key, value];
-// });
-// console.log(newOne);
-
-// const newObj = Object.fromEntries(newOne);
-
-// console.log(newObj);

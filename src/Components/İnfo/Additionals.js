@@ -39,10 +39,10 @@ function Additionals({ colors }) {
   `;
 
   const Label = styled.label`
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: ${colors.textColor};
     margin-bottom: 0.5rem;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: 0.1px;
   `;
 
@@ -67,7 +67,7 @@ function Additionals({ colors }) {
 
   const ExpandCollapse = styled(motion.span)`
     color: ${colors.highlight};
-    font-weight: 500;
+    font-weight: 300;
     font-size: 1px;
     cursor: pointer;
     display: flex;
@@ -113,8 +113,8 @@ function Additionals({ colors }) {
           >
             <motion.div key={"1312313"}>
               <İnputContainer>
-                <Label>Wanted Job Title </Label>
-                <İnput id="job-title" {...inputProps} />
+                <Label>Coutry </Label>
+                <İnput id="country" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
               <İnputContainer>
@@ -125,25 +125,25 @@ function Additionals({ colors }) {
             </motion.div>
             <motion.div key="w42424">
               <İnputContainer>
-                <Label>Wanted Job Title </Label>
-                <İnput id="job-title" {...inputProps} />
+                <Label>Address </Label>
+                <İnput id="address" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
               <İnputContainer>
-                <Label>City</Label>
-                <İnput id="city" {...inputProps} />
+                <Label>Driving License</Label>
+                <İnput id="driving-license" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
             </motion.div>
             <motion.div key="xfsfsf">
               <İnputContainer>
-                <Label>Wanted Job Title </Label>
+                <Label>Natoinality </Label>
                 <İnput id="job-title" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
               <İnputContainer>
-                <Label>City</Label>
-                <İnput id="city" {...inputProps} />
+                <Label>Date of Birth</Label>
+                <İnput id="birth-date" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
             </motion.div>
@@ -151,7 +151,7 @@ function Additionals({ colors }) {
         ) : null}
       </AnimatePresence>
       <ExpandCollapse
-        style={{ color: colors.gray }}
+        style={{ color: colors.highlight }}
         onClick={() => {
           setAnimate((prev) => !prev);
         }}

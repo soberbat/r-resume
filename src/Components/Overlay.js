@@ -21,7 +21,6 @@ function Overlay({ colors }) {
         {isVisible ? (
           <Overlay
             onAnimationComplete={(e) => {
-              console.log(e);
               setTimeout(setİsVibisble(false), 1000);
             }}
             initial={{ x: 0, y: 0, width: 0 }}

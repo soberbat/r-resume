@@ -6,6 +6,21 @@ import Editor from "./Components/Editor/Editor";
 import Infos from "./Components/İnfo/İnfos";
 import { motion, AnimatePresence } from "framer-motion";
 import Overlay from "./Components/Overlay";
+import { ThemeProvider } from "styled-components";
+
+const theme = {
+  colors: {
+    black: "#93A8AC",
+    darkGray: "#191C24",
+    gray: "#2B2E2F",
+    grayMid: "#f0f2f9",
+    lightGray: "#7B8E87",
+    orange: "#EF8354",
+    white: "#FDFFFC",
+    textColor: "#3D3D3D",
+    highlight: "#1b91f0",
+  },
+};
 
 function App() {
   // STATE
@@ -39,46 +54,36 @@ function App() {
   // FUNCTİON TO REMOVE THE TRANSFORM PROPERTY İN ORDER TO FİX THE POSİTİONİNG İSSUE
 
   return (
-    <MainWrapper onClick={() => setAnimateLogo(true)}>
-      {AnimateLogo ? (
-        <motion.div key="131344">
-          <Overlay colors={colors} />
-          <motion.div
-            id="rmvt"
-            onAnimationComplete={() => {
-              handlePos();
-            }}
-            initial={{ x: "100%" }}
-            animate={{
-              x: 0,
-              transition: {
-                delay: 1.8,
-                duration: 0.8,
-                ease: "easeInOut",
-              },
-            }}
-          >
-            <Infos colors={colors} setInfos={setInfo} />
-            <Editor colors={colors} Info={Info} />{" "}
+    <ThemeProvider theme={theme}>
+      <MainWrapper onClick={() => setAnimateLogo(true)}>
+        {AnimateLogo ? (
+          <motion.div key="131344">
+            <Overlay colors={colors} />
+            <motion.div
+              id="rmvt"
+              onAnimationComplete={() => {
+                handlePos();
+              }}
+              initial={{ x: "100%" }}
+              animate={{
+                x: 0,
+                transition: {
+                  delay: 1.8,
+                  duration: 0.8,
+                  ease: "easeInOut",
+                },
+              }}
+            >
+              <Infos colors={colors} setInfos={setInfo} />
+              <Editor colors={colors} Info={Info} />{" "}
+            </motion.div>
           </motion.div>
-        </motion.div>
-      ) : null}
+        ) : null}
 
-      <Logo AnimateLogo={AnimateLogo} />
-    </MainWrapper>
+        <Logo AnimateLogo={AnimateLogo} />
+      </MainWrapper>
+    </ThemeProvider>
   );
 }
-
-export const colors = {
-  black: "#93A8AC",
-  darkGray: "#191C24",
-  gray: "#2B2E2F",
-  grayMid: "#f0f2f9",
-  lightGray: "#7B8E87",
-  orange: "#EF8354",
-  white: "#FDFFFC",
-  textColor: "#838ca3",
-  highlight: "#1b91f0",
-};
 
 export default App;

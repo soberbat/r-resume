@@ -4,37 +4,31 @@ import { act } from "react-dom/test-utils";
 export const AccordionSlice = createSlice({
   name: "AccordionSlice",
   initialState: {
-    numberOfAccordions: 0,
+    Accordions: {},
     ExpandCollapse: {
       0: true,
     },
   },
   reducers: {
-    AddAccordion: (state) => {
-      console.log(state.numberOfAccordions);
-      state.numberOfAccordions += 1;
+    AddAccordion: (state, action) => {
+      state.Accordions = {
+        ...state.Accordions,
+        ...{ [action.payload]: "Accordion" },
+      };
     },
-    RemoveAccordion: (state) => {
-      console.log(state.numberOfAccordions);
-      state.numberOfAccordions -= 1;
-    },
-    SetExpandCollapse: (state, action) => {
-      //A Function that only allows one accordion to be open
-      let newOne = Object.entries(state.ExpandCollapse).map(([key, value]) => {
-        value = value ? false : value;
-        return [key, value];
-      });
-      const newObj = Object.fromEntries(newOne);
+    RemoveAccordion: (state, action) => {
+      const asArray = Object.entries(state.Accordions);
 
-      state.ExpandCollapse = {
-        ...newObj,
-        [action.payload]: !state.ExpandCollapse[action.payload],
+      const filtered = asArray.filter(([key, value]) => key !== action.payload);
+      const justStrings = Object.fromEntries(filtered);
+
+      state.Accordions = {
+        ...justStrings,
       };
     },
   },
 });
 
-export const { AddAccordion, RemoveAccordion, SetExpandCollapse } =
-  AccordionSlice.actions;
+export const { AddAccordion, RemoveAccordion } = AccordionSlice.actions;
 
 export default AccordionSlice.reducer;
