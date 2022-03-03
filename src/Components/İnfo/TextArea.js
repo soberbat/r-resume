@@ -42,11 +42,11 @@ const FocusBorder = styled.span`
 const MiniCont2 = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 1rem;
+  margin-bottom: 0.1rem;
   align-items: center;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1.4rem;
+  margin-top: 0.8rem;
   width: 100%;
 `;
 

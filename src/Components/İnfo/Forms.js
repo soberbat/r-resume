@@ -23,7 +23,6 @@ function Forms({ colors }) {
     }
 
     span {
-      color: blue;
       font-size: 0.8rem;
     }
   `;

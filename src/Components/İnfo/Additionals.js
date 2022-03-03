@@ -67,12 +67,12 @@ function Additionals({ colors }) {
 
   const ExpandCollapse = styled(motion.span)`
     color: ${colors.highlight};
-    font-weight: 300;
+    font-weight: 700;
     font-size: 1px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.4rem;
   `;
 
   // ──────────────────────────────────────── Input Props and functions ──────────
@@ -111,7 +111,7 @@ function Additionals({ colors }) {
             initial={{ height: 0, opacity: 0 }}
             exit={{ height: 0, transition: { duration: 0.4 } }}
           >
-            <motion.div key={"1312313"}>
+            <div key={"1312313"}>
               <İnputContainer>
                 <Label>Coutry </Label>
                 <İnput id="country" {...inputProps} />
@@ -122,8 +122,8 @@ function Additionals({ colors }) {
                 <İnput id="city" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
-            </motion.div>
-            <motion.div key="w42424">
+            </div>
+            <div key="w42424">
               <İnputContainer>
                 <Label>Address </Label>
                 <İnput id="address" {...inputProps} />
@@ -134,11 +134,11 @@ function Additionals({ colors }) {
                 <İnput id="driving-license" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
-            </motion.div>
-            <motion.div key="xfsfsf">
+            </div>
+            <div key="xfsfsf">
               <İnputContainer>
-                <Label>Natoinality </Label>
-                <İnput id="job-title" {...inputProps} />
+                <Label>Nationality </Label>
+                <İnput id="nationality" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
               <İnputContainer>
@@ -146,12 +146,11 @@ function Additionals({ colors }) {
                 <İnput id="birth-date" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
-            </motion.div>
+            </div>
           </Additional>
         ) : null}
       </AnimatePresence>
       <ExpandCollapse
-        style={{ color: colors.highlight }}
         onClick={() => {
           setAnimate((prev) => !prev);
         }}

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
-import { AddAccordion, SetExpandCollapse } from "../../store/AccordionSlice";
+import { AddAccordion } from "../../store/AccordionSlice";
 import { Accordion } from "./Accordion";
-import { useId } from "react-id-generator";
 
 export const ExpandCollapseForm = ({ colors }) => {
   const Accordions = useSelector((state) => state.Accordions.Accordions);
-  const Expanded = useSelector((state) => state.Accordions.ExpandCollapse);
+
+  const TypeOfSection = useSelector((state) => state.Accordions.ExpandCollapse);
   const dispatch = useDispatch();
 
   const handleAddClick = () => {
@@ -23,7 +22,7 @@ export const ExpandCollapseForm = ({ colors }) => {
     font-weight: 500;
     font-size: 0.9rem;
     border-radius: 3px;
-    margin-bottom: 10rem;
+    margin-bottom: 2rem;
     :hover {
       background-color: aliceblue;
     }
@@ -37,7 +36,7 @@ export const ExpandCollapseForm = ({ colors }) => {
       {Object.keys(Accordions).map((item, i) => {
         return (
           <Container key={"container" + i}>
-            <Accordion key={i + "k"} id={item} colors={colors} />
+            <Accordion key={i + "container"} id={item} colors={colors} />
           </Container>
         );
       })}

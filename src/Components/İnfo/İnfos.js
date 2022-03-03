@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import Forms from "./Forms";
 import { useSelector } from "react-redux";
 import Summary from "./Summary";
-import EmploymentHistory from "./EmploymentHistory";
 import SectionText from "./SectionText";
+import AccordionSection from "./AccordionSection";
 
 function Infos({ colors, sides }) {
   const state = useSelector((state) => state.form);
@@ -63,7 +63,9 @@ function Infos({ colors, sides }) {
       <SectionText defaultVal={"Untitled"} top={true} />
       <Forms colors={colors} />
       <Summary colors={colors} />
-      <EmploymentHistory colors={colors} />
+      <AccordionSection colors={colors} type="EmploymentHistory" />
+      {/* <AccordionSection colors={colors} type="Education" />
+      <AccordionSection colors={colors} type="Websites&Socials" /> */}
     </Wrapper>
   );
 }

@@ -9,9 +9,9 @@ import TextArea from "./TextArea";
 
 //STYLES
 const Container = styled.div`
-  border: 1.4px solid gainsboro;
+  border: 1px solid gainsboro;
   border-radius: 5px;
-  padding: 0.3rem 0.4rem;
+  padding: 0rem 0.4rem;
   color: black;
   position: relative;
 
@@ -20,16 +20,12 @@ const Container = styled.div`
   :hover img {
     opacity: 100;
   }
-
-  :hover {
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.04);
-  }
 `;
 const ExpandArrow = styled.img`
-  width: 1.2rem;
+  width: 0.8rem;
 `;
 const CollapseArrow = styled.img`
-  width: 1.2rem;
+  width: 0.8rem;
 `;
 const ExpandCollapse = styled(motion.span)`
   color: blue;
@@ -42,6 +38,9 @@ const ExpandCollapse = styled(motion.span)`
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  :hover * {
+    color: ${({ theme }) => theme.colors.highlight};
+  }
 `;
 const Deleteİmg = styled.img`
   width: 1.2rem;

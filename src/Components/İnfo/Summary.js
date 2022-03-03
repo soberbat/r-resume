@@ -21,23 +21,9 @@ function Summary({ colors }) {
     }
   `;
 
-  const Paragraph = styled.p`
-    font-size: 0.9rem;
-    color: ${colors.textColor};
-    font-weight: 300;
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
-    line-height: 1.5rem;
-  `;
-
   return (
     <Container>
       <SectionText defaultVal={"Professional Summary"} />
-      <Paragraph>
-        Write 2-4 short & energetic sentences to interest the reader! Mention
-        your role, experience & most importantly - your biggest achievements,
-        best qualities and skills.
-      </Paragraph>
       <SummaryText></SummaryText>
     </Container>
   );
