@@ -5,17 +5,33 @@ export const AccordionSlice = createSlice({
   name: "AccordionSlice",
   initialState: {
     Accordions: {
-      EmploymentHistoryAccordions: {},
-      SchoolsAccordions: {},
-      İnternShipsAccordions: {},
+      EmploymentHistory: {},
+      Education: {},
+      İnternShips: {},
     },
   },
   reducers: {
     AddAccordion: (state, action) => {
-      state.Accordions = {
-        ...state.Accordions,
-        ...{ [action.payload]: "Accordion" },
-      };
+      console.log(action.payload.type);
+      if (action.payload.type === "EmploymentHistory") {
+        state.Accordions.EmploymentHistory = {
+          ...state.Accordions.EmploymentHistory,
+          ...{ [action.payload.id]: "Accordion" },
+        };
+      }
+      if (action.payload.type === "Education") {
+        console.log(current(state));
+        state.Accordions.Education = {
+          ...state.Accordions.Education,
+          ...{ [action.payload.id]: "Accordion" },
+        };
+      }
+      if (action.payload.type === "İnternShips") {
+        state.Accordions.İnternShips = {
+          ...state.Accordions.İnternShips,
+          ...{ [action.payload.id]: "Accordion" },
+        };
+      }
     },
     RemoveAccordion: (state, action) => {
       console.log(action.payload);

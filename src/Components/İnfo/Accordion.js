@@ -111,7 +111,7 @@ const Label = styled.label`
 `;
 //STYLES
 
-export const Accordion = ({ id, theState, type }) => {
+export const Accordion = ({ id, state, type }) => {
   const [isVisible, setİsVisible] = useState(true);
   const [Expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();

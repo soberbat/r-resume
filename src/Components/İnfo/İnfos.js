@@ -64,8 +64,8 @@ function Infos({ colors, sides }) {
       <Forms colors={colors} />
       <Summary colors={colors} />
       <AccordionSection colors={colors} type="EmploymentHistory" />
-      {/* <AccordionSection colors={colors} type="Education" />
-      <AccordionSection colors={colors} type="Websites&Socials" /> */}
+      <AccordionSection colors={colors} type="Education" />
+      <AccordionSection colors={colors} type="İnternShips" />
     </Wrapper>
   );
 }

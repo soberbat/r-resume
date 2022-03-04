@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-function SectionText({ theState, top, paragraph, defaultVal }) {
+function SectionText({ state, top, paragraph, defaultVal }) {
   const Header = styled.input`
     font-size: ${top ? "35px" : "1.4rem"};
     border: none;
@@ -35,19 +35,20 @@ function SectionText({ theState, top, paragraph, defaultVal }) {
     font-size: 0.9rem;
     color: ${({ theme }) => theme.colors.textColor};
     font-weight: 300;
-    margin-bottom: 1rem;
+    margin-bottom: 0.4rem;
     margin-top: 0.1rem;
     line-height: 1.5rem;
+    width: 95%;
   `;
 
   const handleİnnerTexts = () => {
     if (top) return <></>;
     if (paragraph) return <Paragraph>{paragraph}</Paragraph>;
-    if (theState) return <Paragraph>{theState?.description}</Paragraph>;
+    if (state) return <Paragraph>{state?.description}</Paragraph>;
   };
 
   const handleHeaderText = () => {
-    if (theState) return theState?.header;
+    if (state) return state?.header;
     if (defaultVal) return defaultVal;
   };
 
