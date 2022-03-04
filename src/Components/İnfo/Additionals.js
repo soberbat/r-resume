@@ -4,84 +4,85 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { addToStore } from "../../store/textSlice";
 
-function Additionals({ colors }) {
-  const dispatch = useDispatch();
+const İnputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 47%;
+`;
+
+const İnput = styled.input`
+  background-color: ${({ theme }) => theme.colors.grayMid};
+  border-radius: 3px;
+  border: none;
+  color: ${({ theme }) => theme.colors.gray};
+  padding: 1rem 0.4rem;
+  width: 100%;
+  text-indent: 10px;
+  font-weight: 400;
+  font-size: 1.2rem;
+  :focus {
+    outline: none;
+  }
+`;
+
+const FocusBorder = styled.span`
+  height: 2px;
+  background-color: #1b91f0;
+  width: 0%;
+  transition: all 0.1s ease-in;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 1px;
+  align-self: center;
+`;
+
+const Label = styled.label`
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.colors.textColor};
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+  letter-spacing: 0.1px;
+`;
+
+const Additional = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
+  overflow: hidden;
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
+const ExpandArrow = styled.img`
+  width: 0.8rem;
+`;
+const CollapseArrow = styled.img`
+  width: 0.8rem;
+`;
+
+const ExpandCollapse = styled(motion.span)`
+  color: ${({ theme }) => theme.colors.highlight};
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+`;
+
+function Additionals() {
   const [isAnimated, setAnimate] = useState(false);
-  const İnputContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 47%;
-  `;
-
-  const İnput = styled(motion.input)`
-    background-color: ${colors.grayMid};
-    border-radius: 3px;
-    border: none;
-    color: ${colors.gray};
-    padding: 1rem 0.4rem;
-    width: 100%;
-    text-indent: 10px;
-    font-weight: 400;
-    :focus {
-      outline: none;
-    }
-  `;
-
-  const FocusBorder = styled.span`
-    height: 2px;
-    background-color: #1b91f0;
-    width: 0%;
-    transition: all 0.1s ease-in;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 1px;
-    align-self: center;
-  `;
-
-  const Label = styled.label`
-    font-size: 0.9rem;
-    color: ${colors.textColor};
-    margin-bottom: 0.5rem;
-    font-weight: 300;
-    letter-spacing: 0.1px;
-  `;
-
-  const Additional = styled(motion.div)`
-    display: flex;
-    flex-direction: column;
-    gap: 1.4rem;
-
-    overflow: hidden;
-    div {
-      display: flex;
-      justify-content: space-between;
-    }
-  `;
-
-  const ExpandArrow = styled.img`
-    width: 0.8rem;
-  `;
-  const CollapseArrow = styled.img`
-    width: 0.8rem;
-  `;
-
-  const ExpandCollapse = styled(motion.span)`
-    color: ${colors.highlight};
-    font-weight: 700;
-    font-size: 1px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  `;
 
   // ──────────────────────────────────────── Input Props and functions ──────────
+  const dispatch = useDispatch();
 
   const handleFocus = (e) => {
     const border = e.target.nextElementSibling;
     border.style.width = "100%";
   };
-
   const handleBlur = (e) => {
     const border = e.target.nextElementSibling;
     border.style.width = "0";

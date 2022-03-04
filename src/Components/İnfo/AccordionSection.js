@@ -3,22 +3,19 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { ExpandCollapseForm } from "./ExpandCollapseForm";
 import SectionText from "./SectionText";
-import { current } from "@reduxjs/toolkit";
-
+//STYLES
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+`;
+//STYLES
 function AccordionSection({ colors, type }) {
-  const state = useSelector((state) => state.Properties[type]);
-  console.log(state);
-
-  const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-  `;
-
+  const theState = useSelector((state) => state.Properties[type]);
   return (
     <Container>
-      <SectionText defaultVal={type} />
-      <ExpandCollapseForm colors={colors} />
+      <SectionText theState={theState} />
+      <ExpandCollapseForm state={theState} type={type} />
     </Container>
   );
 }

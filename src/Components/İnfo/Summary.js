@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import SectionText from "./SectionText";
+import { useDispatch } from "react-redux";
+import { addToStore } from "../../store/textSlice";
 
 function Summary({ colors }) {
+  const dispatch = useDispatch();
+  const handleChange = (e) => {
+    dispatch(addToStore({ [e.target.id]: e.target.value }));
+  };
   const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -11,20 +17,23 @@ function Summary({ colors }) {
   const SummaryText = styled.textarea`
     height: 200px;
     padding: 1rem;
-    background-color: ${colors.grayMid};
+    background-color: ${({ theme }) => theme.colors.grayMid};
     border-radius: 4px;
     border: none;
     color: ${colors.gray};
     resize: none;
     :focus {
-      outline: 1px solid #00cee0;
+      outline: 2px #1b91f0 solid;
     }
   `;
 
+  const paragraph =
+    "Write 2-4 short & energetic sentences to interest the reader! Mention your role, experience & most importantly - your biggest achievements, best qualities and skills.";
+
   return (
     <Container>
-      <SectionText defaultVal={"Professional Summary"} />
-      <SummaryText></SummaryText>
+      <SectionText defaultVal={"Professional Summary"} paragraph={paragraph} />
+      <SummaryText id="summary" onChange={handleChange}></SummaryText>
     </Container>
   );
 }

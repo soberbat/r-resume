@@ -3,8 +3,12 @@ import { createSlice, current } from "@reduxjs/toolkit";
 export const textSlice = createSlice({
   name: "textSlice",
   initialState: {
-    values: {},
-    countedWords: { textAreaEmploymentHistoryCount: 0 },
+    values: {
+      EmploymentHistory: {},
+      School: {},
+      İnternShips: {},
+    },
+    countedWords: {},
   },
   reducers: {
     addToStore: (state, action) => {
@@ -16,9 +20,18 @@ export const textSlice = createSlice({
         ...action.payload,
       };
     },
+    deleteFromStore: (state, action) => {},
+
+    AddToStoreEmploymentHistory: (state, action) => {
+      state.values.EmploymentHistory = {
+        ...state.values.EmploymentHistory,
+        ...action.payload,
+      };
+    },
   },
 });
 
-export const { addToStore, countWords } = textSlice.actions;
+export const { addToStore, countWords, AddToStoreEmploymentHistory } =
+  textSlice.actions;
 
 export default textSlice.reducer;

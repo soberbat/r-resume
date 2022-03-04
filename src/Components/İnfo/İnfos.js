@@ -60,7 +60,7 @@ function Infos({ colors, sides }) {
 
   return (
     <Wrapper>
-      <SectionText defaultVal={"Untitled"} top={true} />
+      <SectionText top={true} defaultVal={"Untitled"} />
       <Forms colors={colors} />
       <Summary colors={colors} />
       <AccordionSection colors={colors} type="EmploymentHistory" />

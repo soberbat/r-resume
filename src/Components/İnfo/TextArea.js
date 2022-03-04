@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { addToStore, countWords } from "../../store/textSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -57,26 +57,32 @@ const MiniCont = styled.div`
   align-items: flex-start;
 `;
 
-const TextArea = () => {
-  const count = useSelector(
-    (state) => state.forms.countedWords.textAreaEmploymentHistoryCount
-  );
+const TextArea = ({ type }) => {
   const [value, setValue] = useState("");
 
-  const dispatch = useDispatch();
+  const [id, setid] = useState("");
 
+  const dispatch = useDispatch();
+  const count = useSelector(
+    (state) => state.forms.countedWords[`textArea${id}Count`]
+  );
   const handleChange = (e) => {
     setValue(e.target.value);
     dispatch(addToStore({ [e.target.id]: e.target.value }));
     dispatch(countWords({ [e.target.id + "Count"]: e.target.value.length }));
   };
 
+  useEffect(() => {
+    const id = `${type}-${Math.random().toString(36).slice(-8)}`;
+    setid(id);
+  }, []);
+
   return (
     <MiniCont>
       <Label>Wanted Job Title </Label>
       <SummaryText
         onChange={(e) => handleChange(e)}
-        id="textAreaEmploymentHistory"
+        id={`textArea${id}`}
         key={"ben-keyi-değişmeyenim"}
         defaultValue={value}
       ></SummaryText>

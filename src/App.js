@@ -17,7 +17,7 @@ const theme = {
     lightGray: "#7B8E87",
     orange: "#EF8354",
     white: "#FDFFFC",
-    textColor: "#3D3D3D",
+    textColor: "#838ca3",
     highlight: "#1b91f0",
   },
 };

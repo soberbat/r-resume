@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { AnimatePresence, motion } from "framer-motion";
+import { useSelector } from "react-redux";
 import { RemoveAccordion, SetExpandCollapse } from "../../store/AccordionSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToStore } from "../../store/textSlice";
-import { colors } from "../../App";
+import { current } from "@reduxjs/toolkit";
 import TextArea from "./TextArea";
 
 //STYLES
@@ -14,7 +14,6 @@ const Container = styled.div`
   padding: 0rem 0.4rem;
   color: black;
   position: relative;
-
   transform: ${(props) => (props.isVisible ? "" : "TranslateX(-1200px)")};
   transition: ease-in-out 0.4s all;
   :hover img {
@@ -27,7 +26,7 @@ const ExpandArrow = styled.img`
 const CollapseArrow = styled.img`
   width: 0.8rem;
 `;
-const ExpandCollapse = styled(motion.span)`
+const ExpandCollapse = styled.span`
   color: blue;
   font-weight: 500;
   height: 75px;
@@ -52,7 +51,7 @@ const Deleteİmg = styled.img`
   transition: all 0.5s ease-in;
 `;
 
-const ContentContainer = styled(motion.div)`
+const ContentContainer = styled.div`
   height: ${(props) => (props.Expanded ? "550px" : "0px")};
   overflow: hidden;
   display: flex;
@@ -70,16 +69,55 @@ const ContentContainer = styled(motion.div)`
     flex-direction: column;
   }
 `;
+const İnputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 47%;
+`;
+
+const FocusBorder = styled.span`
+  height: 2px;
+  background-color: #1b91f0;
+  width: 0%;
+  transition: all 0.1s ease-in;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 1px;
+  align-self: center;
+`;
+
+const İnput = styled.input`
+  background-color: ${({ theme }) => theme.colors.grayMid};
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border: none;
+  color: ${({ theme }) => theme.colors.gray};
+  padding: 1rem 0.4rem;
+  width: 100%;
+  text-indent: 10px;
+  font-weight: 400;
+
+  :focus {
+    outline: none;
+  }
+`;
+
+const Label = styled.label`
+  font-size: 0.86rem;
+  color: ${({ theme }) => theme.colors.textColor};
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+`;
 //STYLES
 
-export const Accordion = ({ colors, id }) => {
-  console.log(id);
+export const Accordion = ({ id, theState, type }) => {
   const [isVisible, setİsVisible] = useState(true);
   const [Expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
   const handleDelete = () => {
     setİsVisible(!isVisible);
-    setTimeout(() => dispatch(RemoveAccordion(id)), 500);
+    setTimeout(() => dispatch(RemoveAccordion(id)), 400);
   };
 
   const imgProps = {
@@ -109,53 +147,12 @@ export const Accordion = ({ colors, id }) => {
 
   //FORMS
 
-  const İnputContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 47%;
-  `;
-
-  const FocusBorder = styled.span`
-    height: 2px;
-    background-color: #1b91f0;
-    width: 0%;
-    transition: all 0.1s ease-in;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 1px;
-    align-self: center;
-  `;
-
-  const İnput = styled.input`
-    background-color: ${colors.grayMid};
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    border: none;
-    color: ${colors.gray};
-    padding: 1rem 0.4rem;
-    width: 100%;
-    text-indent: 10px;
-    font-weight: 400;
-
-    :focus {
-      outline: none;
-    }
-  `;
-
-  const Label = styled.label`
-    font-size: 0.86rem;
-    color: ${colors.textColor};
-    margin-bottom: 0.5rem;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-  `;
-
   //FORMS
   return (
     <Container {...contProps}>
       <Deleteİmg {...imgProps}></Deleteİmg>
       <ExpandCollapse
-        style={{ color: colors.gray, fontSize: "1rem" }}
+        style={{ color: "#191C24", fontSize: "1rem" }}
         onClick={() => setExpanded((prev) => !prev)}
       >
         {id}
@@ -192,7 +189,7 @@ export const Accordion = ({ colors, id }) => {
           </İnputContainer>
         </div>
         <section>
-          <TextArea key={"mykey"} />
+          <TextArea type={type} />
         </section>
       </ContentContainer>
     </Container>

@@ -2,13 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-function SectionText({ defaultVal, top }) {
+function SectionText({ theState, top, paragraph, defaultVal }) {
   const Header = styled.input`
-    font-size: ${top ? "35px" : "1.5rem"};
+    font-size: ${top ? "35px" : "1.4rem"};
     border: none;
     color: #00373d;
     outline: none;
-    margin-bottom: 0;
+    margin-bottom: 0.2rem;
 
     font-weight: 500;
     width: ${top ? "150px" : "240px"};
@@ -36,13 +36,25 @@ function SectionText({ defaultVal, top }) {
     color: ${({ theme }) => theme.colors.textColor};
     font-weight: 300;
     margin-bottom: 1rem;
-    margin-top: 0.3rem;
+    margin-top: 0.1rem;
     line-height: 1.5rem;
   `;
+
+  const handleİnnerTexts = () => {
+    if (top) return <></>;
+    if (paragraph) return <Paragraph>{paragraph}</Paragraph>;
+    if (theState) return <Paragraph>{theState?.description}</Paragraph>;
+  };
+
+  const handleHeaderText = () => {
+    if (theState) return theState?.header;
+    if (defaultVal) return defaultVal;
+  };
+
   return (
     <HeaderContainer>
       <div>
-        <Header defaultValue={defaultVal} />
+        <Header defaultValue={handleHeaderText()} />
         <span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +68,7 @@ function SectionText({ defaultVal, top }) {
           </svg>
         </span>
       </div>
-      {top ? null : <Paragraph></Paragraph>}
+      {handleİnnerTexts()}
     </HeaderContainer>
   );
 }

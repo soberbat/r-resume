@@ -4,9 +4,10 @@ import { act } from "react-dom/test-utils";
 export const AccordionSlice = createSlice({
   name: "AccordionSlice",
   initialState: {
-    Accordions: {},
-    ExpandCollapse: {
-      0: true,
+    Accordions: {
+      EmploymentHistoryAccordions: {},
+      SchoolsAccordions: {},
+      İnternShipsAccordions: {},
     },
   },
   reducers: {
@@ -17,13 +18,12 @@ export const AccordionSlice = createSlice({
       };
     },
     RemoveAccordion: (state, action) => {
-      const asArray = Object.entries(state.Accordions);
-
-      const filtered = asArray.filter(([key, value]) => key !== action.payload);
-      const justStrings = Object.fromEntries(filtered);
-
+      console.log(action.payload);
+      const arr = Object.entries(state.Accordions);
+      const filtered = arr.filter(([key, value]) => key !== action.payload);
+      const newState = Object.fromEntries(filtered);
       state.Accordions = {
-        ...justStrings,
+        ...newState,
       };
     },
   },
