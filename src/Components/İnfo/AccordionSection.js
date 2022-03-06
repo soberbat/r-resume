@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ExpandCollapseForm } from "./ExpandCollapseForm";
 import SectionText from "./SectionText";
 import store from "../../store/store";
+import SkillsSelection from "./SkillsSelection";
 
 //STYLES
 const Container = styled.div`
@@ -20,7 +21,7 @@ function AccordionSection({ type }) {
   return (
     <Container>
       <SectionText state={state} />
-      
+      {type === "Skills" && <SkillsSelection />}
       <ExpandCollapseForm state={state} type={type} />
     </Container>
   );
