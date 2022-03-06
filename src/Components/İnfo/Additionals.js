@@ -9,6 +9,7 @@ const İnputContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 47%;
+  position: relative;
 `;
 
 const İnput = styled.input`
@@ -16,7 +17,7 @@ const İnput = styled.input`
   border-radius: 3px;
   border: none;
   color: ${({ theme }) => theme.colors.gray};
-  padding: 1rem 0.4rem;
+  padding: 0.92rem 0.4rem;
   width: 100%;
   text-indent: 10px;
   font-weight: 400;
@@ -27,12 +28,12 @@ const İnput = styled.input`
 `;
 
 const FocusBorder = styled.span`
-  height: 2px;
+  height: 3.2px;
   background-color: #1b91f0;
   width: 0%;
   transition: all 0.1s ease-in;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 3.2px;
+  border-bottom-left-radius: 3.2px;
   align-self: center;
 `;
 

@@ -29,7 +29,7 @@ const CollapseArrow = styled.img`
 const ExpandCollapse = styled.span`
   color: blue;
   font-weight: 500;
-  height: 75px;
+  height: 70px;
   padding: 1rem;
   font-size: 1px;
   cursor: pointer;
@@ -52,7 +52,8 @@ const Deleteİmg = styled.img`
 `;
 
 const ContentContainer = styled.div`
-  height: ${(props) => (props.Expanded ? "550px" : "0px")};
+  height: ${(props) =>
+    props.Expanded ? (props.Skills ? "110px" : "500px") : "0px"};
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -74,26 +75,29 @@ const İnputContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 47%;
+  position: relative;
 `;
 
 const FocusBorder = styled.span`
-  height: 2px;
+  height: 3.2px;
   background-color: #1b91f0;
   width: 0%;
   transition: all 0.1s ease-in;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 3.2px;
+  border-bottom-left-radius: 3.2px;
   align-self: center;
+  position: absolute;
+  bottom: 0;
 `;
 
 const İnput = styled.input`
   background-color: ${({ theme }) => theme.colors.grayMid};
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+  border-radius: 3.2px;
   border: none;
   color: ${({ theme }) => theme.colors.gray};
-  padding: 1rem 0.4rem;
+  padding: 0.92rem 0.4rem;
   width: 100%;
+  font-size: 1.1rem;
   text-indent: 10px;
   font-weight: 400;
 
@@ -111,15 +115,50 @@ const Label = styled.label`
 `;
 //STYLES
 
+const RangeContainer = styled.div`
+  width: 47%;
+
+  display: flex;
+  align-items: flex-end;
+`;
+
+const Range = styled.input.attrs({ type: "range" })`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: 0;
+  width: 100%;
+  height: 70%;
+  border-radius: 4px;
+
+  background: ${({ theme }) => theme.colors.grayMid};
+
+  ::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 55px;
+    width: 75px;
+    border-radius: 3px;
+    background: gray;
+    cursor: pointer;
+  }
+
+  ::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    -moz-appearance: none;
+    background-image: radial-gradient(circle, #f7f7fc 40%, #ff9800 45%);
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.5);
+  }
+`;
+
 export const Accordion = ({ id, state, type }) => {
   const [isVisible, setİsVisible] = useState(true);
   const [Expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
   const handleDelete = () => {
     setİsVisible(!isVisible);
-    setTimeout(() => dispatch(RemoveAccordion(id)), 400);
+    setTimeout(() => dispatch(RemoveAccordion({ id, type })), 400);
   };
-
   const imgProps = {
     src: "https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-lineal-kiranshastry.png",
     onClick: handleDelete,
@@ -163,35 +202,50 @@ export const Accordion = ({ id, state, type }) => {
         )}
       </ExpandCollapse>
 
-      <ContentContainer Expanded={Expanded}>
-        <div>
-          <İnputContainer>
-            <Label>Wanted Job Title </Label>
-            <İnput id="job-title" {...inputProps} />
-            <FocusBorder />
-          </İnputContainer>
-          <İnputContainer>
-            <Label>City</Label>
-            <İnput id="city" {...inputProps} />
-            <FocusBorder />
-          </İnputContainer>
-        </div>
-        <div>
-          <İnputContainer>
-            <Label>Wanted Job Title </Label>
-            <İnput id="job-title" {...inputProps} />
-            <FocusBorder />
-          </İnputContainer>
-          <İnputContainer>
-            <Label>City</Label>
-            <İnput id="city" {...inputProps} />
-            <FocusBorder />
-          </İnputContainer>
-        </div>
-        <section>
-          <TextArea type={type} />
-        </section>
-      </ContentContainer>
+      {type === "Skills" ? (
+        <ContentContainer Skills={true} Expanded={Expanded}>
+          <div>
+            <İnputContainer>
+              <Label>Wanted Job Title </Label>
+              <İnput id="job-title" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+            <RangeContainer>
+              <Range></Range>
+            </RangeContainer>
+          </div>
+        </ContentContainer>
+      ) : (
+        <ContentContainer Expanded={Expanded}>
+          <div>
+            <İnputContainer>
+              <Label>Wanted Job Title </Label>
+              <İnput id="job-title" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+            <İnputContainer>
+              <Label>City</Label>
+              <İnput id="city" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+          </div>
+          <div>
+            <İnputContainer>
+              <Label>Wanted Job Title </Label>
+              <İnput id="job-title" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+            <İnputContainer>
+              <Label>City</Label>
+              <İnput id="city" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+          </div>
+          <section>
+            <TextArea type={type} />
+          </section>
+        </ContentContainer>
+      )}
     </Container>
   );
 };

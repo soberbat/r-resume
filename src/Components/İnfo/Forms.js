@@ -26,30 +26,33 @@ const İnputContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 47%;
+  position: relative;
 `;
 const İnputContainerFull = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: relative;
 `;
 
 const FocusBorder = styled.span`
-  height: 2px;
+  height: 3.2px;
   background-color: #1b91f0;
   width: 0%;
   transition: all 0.1s ease-in;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 3.2px;
+  border-bottom-left-radius: 3.2px;
   align-self: center;
+  position: absolute;
+  bottom: 0;
 `;
 
 const İnput = styled.input`
   background-color: ${({ theme }) => theme.colors.grayMid};
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
+  border-radius: 3.2px;
   border: none;
   color: ${({ theme }) => theme.colors.gray};
-  padding: 1rem 0.4rem;
+  padding: 0.92rem 0.4rem;
   width: 100%;
   font-size: 1.1rem;
   text-indent: 10px;
@@ -102,11 +105,6 @@ function Forms() {
           <İnput id="job-title" {...inputProps} />
           <FocusBorder />
         </İnputContainerFull>
-        {/* <İnputContainer>
-          <Label>City</Label>
-          <İnput id="city" {...inputProps} />
-          <FocusBorder />
-        </İnputContainer> */}
       </div>
       <div>
         <İnputContainer>

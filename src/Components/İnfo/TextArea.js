@@ -59,10 +59,9 @@ const MiniCont = styled.div`
 
 const TextArea = ({ type }) => {
   const [value, setValue] = useState("");
-
   const [id, setid] = useState("");
-
   const dispatch = useDispatch();
+
   const count = useSelector(
     (state) => state.forms.countedWords[`textArea${id}Count`]
   );

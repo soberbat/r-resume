@@ -19,7 +19,7 @@ function Infos({ colors, sides }) {
     padding: 4rem 2.7rem;
     color: white;
     font-size: 20px;
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Sarabun", sans-serif;
     position: relative;
     display: block;
   `;
@@ -66,6 +66,7 @@ function Infos({ colors, sides }) {
       <AccordionSection colors={colors} type="EmploymentHistory" />
       <AccordionSection colors={colors} type="Education" />
       <AccordionSection colors={colors} type="İnternShips" />
+      <AccordionSection colors={colors} type="Skills" />
     </Wrapper>
   );
 }

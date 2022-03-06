@@ -20,6 +20,7 @@ function AccordionSection({ type }) {
   return (
     <Container>
       <SectionText state={state} />
+      
       <ExpandCollapseForm state={state} type={type} />
     </Container>
   );

@@ -39,7 +39,7 @@ export const ExpandCollapseForm = ({ type }) => {
 
   const addClickText = () => {
     let oneMore = Object.keys(AccordionObject).length > 0;
-    return `Add ${oneMore ? "one more" : ""} ${state?.addButton}   `;
+    return `+ Add ${oneMore ? "one more" : ""} ${state?.addButton}   `;
   };
   return (
     <Wrapper>

@@ -43,6 +43,7 @@ function App() {
   const MainWrapper = styled.div`
     width: 100vw;
     height: 100vh;
+    font-family: "Sarabun", sans-serif;
   `;
   // STYLES
 

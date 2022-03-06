@@ -8,6 +8,7 @@ export const AccordionSlice = createSlice({
       EmploymentHistory: {},
       Education: {},
       İnternShips: {},
+      Skills: {},
     },
   },
   reducers: {
@@ -32,15 +33,58 @@ export const AccordionSlice = createSlice({
           ...{ [action.payload.id]: "Accordion" },
         };
       }
+      if (action.payload.type === "Skills") {
+        state.Accordions.Skills = {
+          ...state.Accordions.Skills,
+          ...{ [action.payload.id]: "Accordion" },
+        };
+      }
     },
     RemoveAccordion: (state, action) => {
-      console.log(action.payload);
-      const arr = Object.entries(state.Accordions);
-      const filtered = arr.filter(([key, value]) => key !== action.payload);
-      const newState = Object.fromEntries(filtered);
-      state.Accordions = {
-        ...newState,
-      };
+      if (action.payload.type === "EmploymentHistory") {
+        console.log("emp");
+        const arr = Object.entries(state.Accordions.EmploymentHistory);
+        const filtered = arr.filter(
+          ([key, value]) => key !== action.payload.id
+        );
+        const newState = Object.fromEntries(filtered);
+        state.Accordions.EmploymentHistory = {
+          ...newState,
+        };
+      }
+      if (action.payload.type === "Education") {
+        console.log("education");
+        const arr = Object.entries(state.Accordions.Education);
+        const filtered = arr.filter(
+          ([key, value]) => key !== action.payload.id
+        );
+        const newState = Object.fromEntries(filtered);
+        state.Accordions.Education = {
+          ...newState,
+        };
+      }
+      if (action.payload.type === "İnternShips") {
+        console.log("intern");
+        const arr = Object.entries(state.Accordions.İnternShips);
+        const filtered = arr.filter(
+          ([key, value]) => key !== action.payload.id
+        );
+        const newState = Object.fromEntries(filtered);
+        state.Accordions.İnternShips = {
+          ...newState,
+        };
+      }
+      if (action.payload.type === "Skills") {
+        console.log("intern");
+        const arr = Object.entries(state.Accordions.Skills);
+        const filtered = arr.filter(
+          ([key, value]) => key !== action.payload.id
+        );
+        const newState = Object.fromEntries(filtered);
+        state.Accordions.Skills = {
+          ...newState,
+        };
+      }
     },
   },
 });
