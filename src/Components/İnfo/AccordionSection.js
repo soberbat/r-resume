@@ -21,7 +21,7 @@ function AccordionSection({ type }) {
   return (
     <Container>
       <SectionText state={state} />
-      {type === "Skills" && <SkillsSelection />}
+      {type === "Skills" && <SkillsSelection state={state} type={type} />}
       <ExpandCollapseForm state={state} type={type} />
     </Container>
   );
