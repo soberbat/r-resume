@@ -10,7 +10,7 @@ import SkillsSelection from "./SkillsSelection";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 0.6rem;
+  margin-top: 0rem;
 `;
 //STYLES
 function AccordionSection({ type }) {

@@ -40,6 +40,7 @@ export const AccordionSlice = createSlice({
         };
       }
     },
+
     RemoveAccordion: (state, action) => {
       if (action.payload.type === "EmploymentHistory") {
         console.log("emp");
@@ -75,7 +76,6 @@ export const AccordionSlice = createSlice({
         };
       }
       if (action.payload.type === "Skills") {
-        console.log("intern");
         const arr = Object.entries(state.Accordions.Skills);
         const filtered = arr.filter(
           ([key, value]) => key !== action.payload.id

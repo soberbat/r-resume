@@ -7,6 +7,7 @@ export const textSlice = createSlice({
       EmploymentHistory: {},
       School: {},
       İnternShips: {},
+      Skills: {},
     },
     countedWords: {},
   },
@@ -28,10 +29,27 @@ export const textSlice = createSlice({
         ...action.payload,
       };
     },
+    AddToStoreSkills: (state, action) => {
+      state.values.Skills = {
+        ...state.values.Skills,
+        ...{ [action.payload.skill]: [action.payload.level] },
+      };
+    },
+    // AddToSkills: (state, action) => {
+    //   console.log(current(state.values.Skills));
+    //   state.values.Skills = {
+    //     ...state.values.Skills,
+    //     [action.payload]: "Skill",
+    //   };
+    // },
   },
 });
 
-export const { addToStore, countWords, AddToStoreEmploymentHistory } =
-  textSlice.actions;
+export const {
+  addToStore,
+  countWords,
+  AddToStoreEmploymentHistory,
+  AddToStoreSkills,
+} = textSlice.actions;
 
 export default textSlice.reducer;

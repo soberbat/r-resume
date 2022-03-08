@@ -20,7 +20,7 @@ function SectionText({ state, top, paragraph, defaultVal }) {
     justify-content: center;
     margin-top: ${top ? "0" : "1rem"};
     margin-bottom: 0rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 
     span {
       opacity: 0;

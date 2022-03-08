@@ -10,7 +10,7 @@ const Wrapper = styled.div``;
 const AddContainer = styled.div`
   padding: 0.6rem 0.8rem;
   color: ${({ theme }) => theme.colors.highlight};
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.9rem;
   border-radius: 3px;
   margin-bottom: 2rem;
@@ -33,7 +33,7 @@ export const ExpandCollapseForm = ({ type }) => {
 
   const dispatch = useDispatch();
   const handleAddClick = () => {
-    const id = `component-${Math.random().toString(16).slice(2)}`;
+    const id = `component-${Math.random().toString(16).slice(1)}`;
     dispatch(AddAccordion({ id: id, type: type }));
   };
 

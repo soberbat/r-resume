@@ -16,7 +16,7 @@ function Infos({ colors, sides }) {
     height: 100vh;
     width: 50%;
     color: blue;
-    padding: 4rem 2.7rem;
+    padding: 4rem 3rem;
     color: white;
     font-size: 20px;
     font-family: "Sarabun", sans-serif;

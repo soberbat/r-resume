@@ -12,7 +12,7 @@ function Editor({ colors }) {
   });
 
   const Wrapper = styled(motion.div)`
-    background-color: ${colors.black};
+    background-color: #143642;
     width: 50%;
     height: 100vh;
     position: fixed;
@@ -31,12 +31,12 @@ function Editor({ colors }) {
     background-color: ${colors.white};
     padding: 0.9rem 2.1rem;
     border: none;
-    border-radius: 0.2rem;
+    border-radius: 3px;
     color: ${colors.black};
     font-size: 1rem;
     font-family: "Ubuntu", sans-serif;
     font-weight: 700;
-    align-self: flex-end;
+    width: 100%;
   `;
 
   return (
