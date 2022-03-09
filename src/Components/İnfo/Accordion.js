@@ -8,6 +8,7 @@ import { current } from "@reduxjs/toolkit";
 import TextArea from "./TextArea";
 import { AddAccordion } from "../../store/AccordionSlice";
 import { AddToStoreSkills } from "../../store/textSlice";
+import { AddAccordionValuesToStore } from "../../store/textSlice";
 
 //STYLES
 const Container = styled.div`
@@ -56,7 +57,7 @@ const Deleteİmg = styled.img`
 
 const ContentContainer = styled.div`
   height: ${(props) =>
-    props.Expanded ? (props.Skills ? "100px" : "500px") : "0px"};
+    props.Expanded ? (props.Skills ? "100px" : "550px") : "0px"};
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -172,60 +173,12 @@ const SkillNameContainer = styled.div`
 `;
 
 export const Accordion = ({ id, state, type }) => {
-  const skills = useSelector((state) => state.Accordions.Accordions.Skills);
   const [skill, setSkill] = useState(id);
+  const [AccordionTitle, setAccordionTitle] = useState("(Undefined)");
   const [skillLevel, setSkillLevel] = useState(5);
   const [isVisible, setİsVisible] = useState(true);
   const [Expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
-  const handleDelete = () => {
-    setİsVisible(!isVisible);
-    setTimeout(() => dispatch(RemoveAccordion({ id, type })), 300);
-  };
-  const imgProps = {
-    src: "https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-lineal-kiranshastry.png",
-    onClick: handleDelete,
-  };
-  const contProps = {
-    isVisible: isVisible,
-  };
-  const handleFocus = (e) => {
-    const border = e.target.nextElementSibling;
-    border.style.width = "100%";
-  };
-
-  const handleBlur = (e) => {
-    const border = e.target.nextElementSibling;
-    border.style.width = "0";
-  };
-  const inputProps = {
-    onFocus: (e) => handleFocus(e),
-    onBlur: (e) => handleBlur(e),
-    onChange: (e) => {
-      dispatch(addToStore({ [e.target.id]: e.target.value }));
-    },
-    autoComplete: "off",
-  };
-
-  const SkillsProps = {
-    onChange: (e) => {
-      dispatch(AddToStoreSkills({ skill: skill, level: e.target.value }));
-      setSkillLevel(e.target.value);
-    },
-  };
-
-  // const findCurrentSkill = () => {
-  //   let CurrentSkill = Object.keys(skills).find((key) => key === id);
-  //   let CurrentSkillLevel = skills[CurrentSkill];
-  //   let Arr = Object.entries({ [CurrentSkill]: CurrentSkillLevel });
-  //   console.log(Arr);
-  //   return (
-  //     <SkillNameContainer>
-  //       <span>{Arr[0][0]} </span> <span> {Arr[0][1]} </span>
-  //     </SkillNameContainer>
-  //   );
-  // };
-
   const levels = () => {
     if (skillLevel === "1") {
       return "Novice";
@@ -243,8 +196,64 @@ export const Accordion = ({ id, state, type }) => {
       return "Expert";
     }
   };
+  const handleDelete = () => {
+    setİsVisible(!isVisible);
+    setTimeout(() => dispatch(RemoveAccordion({ id, type })), 300);
+  };
 
-  //FORMS
+  const handleFocus = (e) => {
+    const border = e.target.nextElementSibling;
+    border.style.width = "100%";
+  };
+
+  const handleBlur = (e) => {
+    const border = e.target.nextElementSibling;
+    border.style.width = "0";
+  };
+  const imgProps = {
+    src: "https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-lineal-kiranshastry.png",
+    onClick: handleDelete,
+  };
+  const contProps = {
+    isVisible: isVisible,
+  };
+  const inputProps = {
+    onFocus: (e) => handleFocus(e),
+    onBlur: (e) => handleBlur(e),
+    onChange: (e) => {
+      if (e.target.id === "which") {
+        setAccordionTitle(e.target.value);
+        console.log(type);
+        dispatch(
+          AddAccordionValuesToStore({
+            AccordionType: type,
+            values: {
+              [e.target.id]: e.target.value,
+            },
+            id: id,
+          })
+        );
+      } else {
+        console.log(type);
+        dispatch(
+          AddAccordionValuesToStore({
+            AccordionType: type,
+            values: {
+              [e.target.id]: e.target.value,
+            },
+            id: id,
+          })
+        );
+      }
+    },
+  };
+  const SkillsProps = {
+    onChange: (e) => {
+      dispatch(AddToStoreSkills({ skill: skill, level: e.target.value }));
+      setSkillLevel(e.target.value);
+    },
+  };
+
   return (
     <Container {...contProps}>
       <Deleteİmg {...imgProps}></Deleteİmg>
@@ -257,7 +266,9 @@ export const Accordion = ({ id, state, type }) => {
             <span> {skill.length < 23 ? skill : ""} </span>
             <span>{levels()} </span>
           </SkillNameContainer>
-        ) : null}
+        ) : (
+          <span>{AccordionTitle}</span>
+        )}
         {Expanded ? (
           <CollapseArrow src="https://img.icons8.com/ios-glyphs/30/000000/collapse-arrow.png" />
         ) : (
@@ -286,30 +297,30 @@ export const Accordion = ({ id, state, type }) => {
         <ContentContainer Expanded={Expanded}>
           <div>
             <İnputContainer>
-              <Label>Wanted Job Title </Label>
-              <İnput id="job-title" {...inputProps} />
+              <Label>Job Title </Label>
+              <İnput id="which" {...inputProps} />
               <FocusBorder />
             </İnputContainer>
             <İnputContainer>
-              <Label>City</Label>
-              <İnput id="city" {...inputProps} />
+              <Label>Employer</Label>
+              <İnput id="emp-deg" {...inputProps} />
               <FocusBorder />
             </İnputContainer>
           </div>
           <div>
             <İnputContainer>
-              <Label>Wanted Job Title </Label>
-              <İnput id="job-title" {...inputProps} />
+              <Label>Start & End Date </Label>
+              <İnput id="when" {...inputProps} />
               <FocusBorder />
             </İnputContainer>
             <İnputContainer>
               <Label>City</Label>
-              <İnput id="city" {...inputProps} />
+              <İnput id="where" {...inputProps} />
               <FocusBorder />
             </İnputContainer>
           </div>
           <section>
-            <TextArea type={type} />
+            <TextArea id={id} type={type} />
           </section>
         </ContentContainer>
       )}

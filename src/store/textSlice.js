@@ -5,7 +5,7 @@ export const textSlice = createSlice({
   initialState: {
     values: {
       EmploymentHistory: {},
-      School: {},
+      Education: {},
       İnternShips: {},
       Skills: {},
     },
@@ -21,8 +21,7 @@ export const textSlice = createSlice({
         ...action.payload,
       };
     },
-    deleteFromStore: (state, action) => {},
-
+    // deleteFromStore: (state, action) => {},
     AddToStoreEmploymentHistory: (state, action) => {
       state.values.EmploymentHistory = {
         ...state.values.EmploymentHistory,
@@ -35,13 +34,32 @@ export const textSlice = createSlice({
         ...{ [action.payload.skill]: [action.payload.level] },
       };
     },
-    // AddToSkills: (state, action) => {
-    //   console.log(current(state.values.Skills));
-    //   state.values.Skills = {
-    //     ...state.values.Skills,
-    //     [action.payload]: "Skill",
-    //   };
-    // },
+    AddAccordionValuesToStore: (state, action) => {
+      if (action.payload.AccordionType === "EmploymentHistory") {
+        state.values.EmploymentHistory = {
+          [action.payload.id]: {
+            ...state.values.EmploymentHistory[action.payload.id],
+            ...action.payload.values,
+          },
+        };
+      }
+      if (action.payload.AccordionType === "Education") {
+        state.values.Education = {
+          [action.payload.id]: {
+            ...state.values.Education[action.payload.id],
+            ...action.payload.values,
+          },
+        };
+      }
+      if (action.payload.AccordionType === "İnternShips") {
+        state.values.İnternShips = {
+          [action.payload.id]: {
+            ...state.values.İnternShips[action.payload.id],
+            ...action.payload.values,
+          },
+        };
+      }
+    },
   },
 });
 
@@ -50,6 +68,7 @@ export const {
   countWords,
   AddToStoreEmploymentHistory,
   AddToStoreSkills,
+  AddAccordionValuesToStore,
 } = textSlice.actions;
 
 export default textSlice.reducer;

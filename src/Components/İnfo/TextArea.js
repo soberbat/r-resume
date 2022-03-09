@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { addToStore, countWords } from "../../store/textSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { AddAccordionValuesToStore } from "../../store/textSlice";
 
 const SummaryText = styled.textarea`
   height: 250px;
@@ -47,6 +48,7 @@ const MiniCont2 = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 0.8rem;
+
   width: 100%;
 `;
 
@@ -57,9 +59,8 @@ const MiniCont = styled.div`
   align-items: flex-start;
 `;
 
-const TextArea = ({ type }) => {
+const TextArea = ({ type, id }) => {
   const [value, setValue] = useState("");
-  const [id, setid] = useState("");
   const dispatch = useDispatch();
 
   const count = useSelector(
@@ -67,22 +68,24 @@ const TextArea = ({ type }) => {
   );
   const handleChange = (e) => {
     setValue(e.target.value);
-    dispatch(addToStore({ [e.target.id]: e.target.value }));
     dispatch(countWords({ [e.target.id + "Count"]: e.target.value.length }));
+    dispatch(
+      AddAccordionValuesToStore({
+        AccordionType: type,
+        values: {
+          [e.target.id]: e.target.value,
+        },
+        id: id,
+      })
+    );
   };
-
-  useEffect(() => {
-    const id = `${type}-${Math.random().toString(36).slice(-8)}`;
-    setid(id);
-  }, []);
 
   return (
     <MiniCont>
       <Label>Wanted Job Title </Label>
       <SummaryText
         onChange={(e) => handleChange(e)}
-        id={`textArea${id}`}
-        key={"ben-keyi-değişmeyenim"}
+        id={"text-area"}
         defaultValue={value}
       ></SummaryText>
       <MiniCont2>

@@ -33,7 +33,7 @@ export const ExpandCollapseForm = ({ type }) => {
 
   const dispatch = useDispatch();
   const handleAddClick = () => {
-    const id = `component-${Math.random().toString(16).slice(1)}`;
+    const id = `Accordion-${Math.random().toString(16).slice(1)}`;
     dispatch(AddAccordion({ id: id, type: type }));
   };
 
