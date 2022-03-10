@@ -11,7 +11,7 @@ const SvgHobby = (props) => (
     <defs>
       <style>
         {
-          ".Hobby_svg__cls-1{fill:#fff200}.Hobby_svg__cls-2{fill:#f7941e}.Hobby_svg__cls-3{fill:#231f20}"
+          ".Hobby_svg__cls-1{fill:#1b91f0}.Hobby_svg__cls-2{fill:aliceblue}.Hobby_svg__cls-3{fill:#231f20  }"
         }
       </style>
     </defs>

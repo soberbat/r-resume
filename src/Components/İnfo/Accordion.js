@@ -18,7 +18,7 @@ const Container = styled.div`
   color: black;
   position: relative;
   transform: ${(props) => (props.isVisible ? "" : "TranslateX(-1200px)")};
-  transition: ease-in-out 0.4s all;
+  transition: ease-in-out 0.3s all;
   :hover img {
     opacity: 100;
   }
@@ -178,7 +178,7 @@ const AccordionHeader = styled.span`
 
 export const Accordion = ({ id, state, type }) => {
   const [skill, setSkill] = useState(id);
-  const [AccordionTitle, setAccordionTitle] = useState("(Undefined)");
+  const [AccordionTitle, setAccordionTitle] = useState("Not Specified ⚙️");
   const [skillLevel, setSkillLevel] = useState(5);
   const [isVisible, setİsVisible] = useState(true);
   const [Expanded, setExpanded] = useState(false);
