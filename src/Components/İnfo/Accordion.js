@@ -101,7 +101,7 @@ const İnput = styled.input`
   color: ${({ theme }) => theme.colors.gray};
   padding: 0.92rem 0.4rem;
   width: 100%;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-indent: 10px;
   font-weight: 400;
 
@@ -170,6 +170,10 @@ const SkillNameContainer = styled.div`
     font-size: 0.8rem;
     color: ${({ theme }) => theme.colors.textColor};
   }
+`;
+
+const AccordionHeader = styled.span`
+  font-size: 1rem;
 `;
 
 export const Accordion = ({ id, state, type }) => {
@@ -267,7 +271,7 @@ export const Accordion = ({ id, state, type }) => {
             <span>{levels()} </span>
           </SkillNameContainer>
         ) : (
-          <span>{AccordionTitle}</span>
+          <AccordionHeader>{AccordionTitle}</AccordionHeader>
         )}
         {Expanded ? (
           <CollapseArrow src="https://img.icons8.com/ios-glyphs/30/000000/collapse-arrow.png" />

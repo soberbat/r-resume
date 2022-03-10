@@ -13,7 +13,7 @@ const SummaryText = styled.textarea`
   border: none;
   color: black;
   resize: none;
-
+  font-size: 0.9rem;
   :focus {
     outline: 2px #1b91f0 solid;
   }

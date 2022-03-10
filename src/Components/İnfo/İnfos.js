@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Summary from "./Summary";
 import SectionText from "./SectionText";
 import AccordionSection from "./AccordionSection";
+import Extras from "./extras/Extras";
 
 function Infos({ colors, sides }) {
   const state = useSelector((state) => state.form);
@@ -16,7 +17,7 @@ function Infos({ colors, sides }) {
     height: 100vh;
     width: 50%;
     color: blue;
-    padding: 4rem 3rem;
+    padding: 1rem 3rem;
     color: white;
     font-size: 20px;
     font-family: "Sarabun", sans-serif;
@@ -67,6 +68,7 @@ function Infos({ colors, sides }) {
       <AccordionSection colors={colors} type="Education" />
       <AccordionSection colors={colors} type="İnternShips" />
       <AccordionSection colors={colors} type="Skills" />
+      <Extras />
     </Wrapper>
   );
 }

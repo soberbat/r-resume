@@ -31,12 +31,13 @@ export const textSlice = createSlice({
     AddToStoreSkills: (state, action) => {
       state.values.Skills = {
         ...state.values.Skills,
-        ...{ [action.payload.skill]: [action.payload.level] },
+        ...{ [action.payload.skill]: action.payload.level },
       };
     },
     AddAccordionValuesToStore: (state, action) => {
       if (action.payload.AccordionType === "EmploymentHistory") {
         state.values.EmploymentHistory = {
+          ...state.values.EmploymentHistory,
           [action.payload.id]: {
             ...state.values.EmploymentHistory[action.payload.id],
             ...action.payload.values,
