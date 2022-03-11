@@ -27,7 +27,7 @@ const Header = styled.h1`
   font-weight: 500;
 `;
 const Option = styled.h1`
-  color: black;
+  color: ${(props) => (props.clicked ? "gray" : "black")};
   font-weight: 300;
   font-size: 1.1rem;
   margin-bottom: 1.2rem;
@@ -36,8 +36,9 @@ const Option = styled.h1`
   display: flex;
   gap: 0.4rem;
   align-items: center;
+  transition: 0.4s all ease-in;
   :hover {
-    color: ${({ theme }) => theme.colors.highlight};
+    color: ${(props) => (props.clicked ? "gray" : "#1b91f0")};
   }
 `;
 
@@ -45,13 +46,13 @@ const AddedExtraSectionContainer = styled.div``;
 
 const Extras = () => {
   const [ExtraSections, setExtraSections] = useState({
+    references: false,
     hobbies: false,
     languages: false,
-    references: false,
   });
   const [Extraİtems, setExtraİtems] = useState({
-    hobbies: <SvgHobby style={{ width: "50px" }} />,
     references: <SvgReference style={{ width: "50px" }} />,
+    hobbies: <SvgHobby style={{ width: "50px" }} />,
     languages: <SvgLanguage style={{ width: "50px" }} />,
   });
   const handleClick = (e) => {
@@ -82,7 +83,7 @@ const Extras = () => {
         <div>
           {Object.keys(Extraİtems).map((item) => {
             return (
-              <Option key={item}>
+              <Option clicked={ExtraSections[item]} key={item}>
                 <span>{Extraİtems[item]}</span>
                 <span id={item} {...OptionProps}>
                   {item[0].toUpperCase() + item.substring(1)}{" "}

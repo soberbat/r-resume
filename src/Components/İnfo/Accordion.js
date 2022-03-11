@@ -11,7 +11,7 @@ import { AddToStoreSkills } from "../../store/textSlice";
 import { AddAccordionValuesToStore } from "../../store/textSlice";
 
 //STYLES
-const Container = styled.div`
+export const Container = styled.div`
   border: 1px solid gainsboro;
   border-radius: 5px;
   padding: 0rem 0.4rem;
@@ -23,13 +23,13 @@ const Container = styled.div`
     opacity: 100;
   }
 `;
-const ExpandArrow = styled.img`
+export const ExpandArrow = styled.img`
   width: 0.8rem;
 `;
-const CollapseArrow = styled.img`
+export const CollapseArrow = styled.img`
   width: 0.8rem;
 `;
-const ExpandCollapse = styled.span`
+export const ExpandCollapse = styled.span`
   color: blue;
   font-weight: 500;
   height: 70px;
@@ -54,10 +54,17 @@ export const Deleteİmg = styled.img`
   opacity: 0;
   transition: all 0.5s ease-in;
 `;
-
-const ContentContainer = styled.div`
+export const ContentContainer = styled.div`
   height: ${(props) =>
-    props.Expanded ? (props.Skills ? "100px" : "500px") : "0px"};
+    props.Expanded
+      ? props.Skills
+        ? "100px"
+        : props.References
+        ? "220px"
+        : props.Languages
+        ? "100px"
+        : "500px"
+      : "0px"};
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -74,15 +81,14 @@ const ContentContainer = styled.div`
     flex-direction: column;
   }
 `;
-const İnputContainer = styled.div`
+export const İnputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 47%;
   position: relative;
 `;
-
-const FocusBorder = styled.span`
+export const FocusBorder = styled.span`
   height: 3.2px;
   background-color: #1b91f0;
   width: 0%;
@@ -93,8 +99,7 @@ const FocusBorder = styled.span`
   position: absolute;
   bottom: 0;
 `;
-
-const İnput = styled.input`
+export const İnput = styled.input`
   background-color: ${({ theme }) => theme.colors.grayMid};
   border-radius: 3.2px;
   border: none;
@@ -109,8 +114,7 @@ const İnput = styled.input`
     outline: none;
   }
 `;
-
-const Label = styled.label`
+export const Label = styled.label`
   font-size: 0.86rem;
   color: ${({ theme }) => theme.colors.textColor};
   margin-bottom: 0.5rem;
@@ -118,14 +122,12 @@ const Label = styled.label`
   letter-spacing: 0.3px;
 `;
 //STYLES
-
 const RangeContainer = styled.div`
   width: 47%;
 
   display: flex;
   align-items: flex-end;
 `;
-
 const Range = styled.input.attrs({
   type: "range",
   min: 1,
@@ -159,7 +161,6 @@ const Range = styled.input.attrs({
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.5);
   }
 `;
-
 const SkillNameContainer = styled.div`
   display: flex;
   align-items: flex-start;
@@ -171,8 +172,7 @@ const SkillNameContainer = styled.div`
     color: ${({ theme }) => theme.colors.textColor};
   }
 `;
-
-const AccordionHeader = styled.span`
+export const AccordionHeader = styled.span`
   font-size: 1rem;
 `;
 
@@ -259,7 +259,7 @@ export const Accordion = ({ id, state, type }) => {
   };
   const expandCollapseProps = {
     style: { color: "#191C24", fontSize: "1rem" },
-    onClick: () => SetExpanded((prev) => !prev),
+    onClick: () => setExpanded((prev) => !prev),
   };
 
   return (

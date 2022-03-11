@@ -3,47 +3,14 @@ import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { addToStore } from "../../store/textSlice";
-
-const İnputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 47%;
-  position: relative;
-`;
-
-const İnput = styled.input`
-  background-color: ${({ theme }) => theme.colors.grayMid};
-  border-radius: 3px;
-  border: none;
-  color: ${({ theme }) => theme.colors.gray};
-  padding: 0.92rem 0.4rem;
-  width: 100%;
-  text-indent: 10px;
-  font-weight: 400;
-  font-size: 1.2rem;
-  :focus {
-    outline: none;
-  }
-`;
-
-const FocusBorder = styled.span`
-  height: 3.2px;
-  background-color: #1b91f0;
-  width: 0%;
-  transition: all 0.1s ease-in;
-  border-bottom-right-radius: 3.2px;
-  border-bottom-left-radius: 3.2px;
-  align-self: center;
-`;
-
-const Label = styled.label`
-  font-size: 0.9rem;
-  color: ${({ theme }) => theme.colors.textColor};
-  margin-bottom: 0.5rem;
-  font-weight: 300;
-  letter-spacing: 0.1px;
-`;
+import {
+  İnputContainer,
+  FocusBorder,
+  İnput,
+  Label,
+  ExpandArrow,
+  CollapseArrow,
+} from "./Accordion";
 
 const Additional = styled(motion.div)`
   display: flex;
@@ -56,14 +23,6 @@ const Additional = styled(motion.div)`
     justify-content: space-between;
   }
 `;
-
-const ExpandArrow = styled.img`
-  width: 0.8rem;
-`;
-const CollapseArrow = styled.img`
-  width: 0.8rem;
-`;
-
 const ExpandCollapse = styled(motion.span)`
   color: ${({ theme }) => theme.colors.highlight};
   font-weight: 500;
@@ -75,11 +34,8 @@ const ExpandCollapse = styled(motion.span)`
 `;
 
 function Additionals() {
-  const [isAnimated, setAnimate] = useState(false);
-
-  // ──────────────────────────────────────── Input Props and functions ──────────
   const dispatch = useDispatch();
-
+  const [isAnimated, setAnimate] = useState(false);
   const handleFocus = (e) => {
     const border = e.target.nextElementSibling;
     border.style.width = "100%";
@@ -96,9 +52,6 @@ function Additionals() {
     },
     autoComplete: "off",
   };
-
-  // ──────────────────────────────────────────────────
-
   return (
     <>
       <AnimatePresence>

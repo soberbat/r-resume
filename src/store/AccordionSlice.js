@@ -99,6 +99,26 @@ export const AccordionSlice = createSlice({
           ...newState,
         };
       }
+      if (action.payload.type === "References") {
+        const arr = Object.entries(state.Accordions.References);
+        const filtered = arr.filter(
+          ([key, value]) => key !== action.payload.id
+        );
+        const newState = Object.fromEntries(filtered);
+        state.Accordions.References = {
+          ...newState,
+        };
+      }
+      if (action.payload.type === "Languages") {
+        const arr = Object.entries(state.Accordions.Languages);
+        const filtered = arr.filter(
+          ([key, value]) => key !== action.payload.id
+        );
+        const newState = Object.fromEntries(filtered);
+        state.Accordions.Languages = {
+          ...newState,
+        };
+      }
     },
   },
 });

@@ -5,6 +5,7 @@ import Additionals from "./Additionals";
 import { useSelector, useDispatch } from "react-redux";
 import { addToStore } from "../../store/textSlice";
 import SectionText from "./SectionText";
+import { İnputContainer, FocusBorder, İnput, Label } from "./Accordion";
 
 const PersonalDetails = styled.div`
   display: flex;
@@ -15,18 +16,9 @@ const PersonalDetails = styled.div`
     display: flex;
     justify-content: space-between;
   }
-
   span {
     font-size: 0.8rem;
   }
-`;
-
-const İnputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 47%;
-  position: relative;
 `;
 const İnputContainerFull = styled.div`
   display: flex;
@@ -35,52 +27,13 @@ const İnputContainerFull = styled.div`
   position: relative;
 `;
 
-const FocusBorder = styled.span`
-  height: 3.2px;
-  background-color: #1b91f0;
-  width: 0%;
-  transition: all 0.1s ease-in;
-  border-bottom-right-radius: 3.2px;
-  border-bottom-left-radius: 3.2px;
-  align-self: center;
-  position: absolute;
-  bottom: 0;
-`;
-
-export const İnput = styled.input`
-  background-color: ${({ theme }) => theme.colors.grayMid};
-  border-radius: 3.2px;
-  border: none;
-  color: ${({ theme }) => theme.colors.gray};
-  padding: 0.92rem 0.4rem;
-  width: 100%;
-  font-size: 1.1rem;
-  text-indent: 10px;
-  font-weight: 400;
-
-  :focus {
-    outline: none;
-  }
-`;
-
-const Label = styled.label`
-  font-size: 0.9rem;
-  color: ${({ theme }) => theme.colors.textColor};
-  margin-bottom: 0.5rem;
-  font-weight: 300;
-  letter-spacing: 0.3px;
-`;
-
 function Forms() {
   // ──────────────────────────────────────── Input Props and functions ──────────
-
   const dispatch = useDispatch();
-
   const handleFocus = (e) => {
     const border = e.target.nextElementSibling;
     border.style.width = "100%";
   };
-
   const handleBlur = (e) => {
     const border = e.target.nextElementSibling;
     border.style.width = "0";
@@ -91,9 +44,7 @@ function Forms() {
     onChange: (e) => {
       dispatch(addToStore({ [e.target.id]: e.target.value }));
     },
-    autoComplete: "off",
   };
-
   // ──────────────────────────────────────────────────
 
   return (

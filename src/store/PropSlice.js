@@ -23,6 +23,12 @@ export const PropsSlice = createSlice({
       description: `Choose 5 of the most important skills to show your talents! Make sure they match the keywords of the job listing if applying via an online system.`,
       addButton: "skill",
     },
+    References: {
+      addButton: "reference",
+    },
+    Languages: {
+      addButton: "language",
+    },
   },
   reducers: {},
 });

@@ -1,145 +1,151 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { ExpandCollapseForm } from "../ExpandCollapseForm";
-import { Deleteİmg } from "../Accordion";
+import styled, { css } from "styled-components";
+import { useSelector } from "react-redux";
+import {
+  RemoveAccordion,
+  SetExpandCollapse,
+} from "../../../store/AccordionSlice";
+import { useDispatch } from "react-redux";
+import { addToStore } from "../../../store/textSlice";
+import { current } from "@reduxjs/toolkit";
+import { AddAccordion } from "../../../store/AccordionSlice";
+import { AddToStoreSkills } from "../../../store/textSlice";
+import { AddAccordionValuesToStore } from "../../../store/textSlice";
+import {
+  Deleteİmg,
+  Container,
+  ExpandArrow,
+  CollapseArrow,
+  ExpandCollapse,
+  ContentContainer,
+  İnputContainer,
+  FocusBorder,
+  İnput,
+  Label,
+  AccordionHeader,
+} from "../Accordion";
 
-const İnput = styled.input`
-  background-color: ${({ theme }) => theme.colors.grayMid};
-  border-radius: 3.2px;
-  border: none;
-  color: ${({ theme }) => theme.colors.gray};
-  padding: 0.92rem 0.4rem;
-  width: 100%;
-  font-size: 1.1rem;
-  text-indent: 10px;
-  font-weight: 400;
-
-  :focus {
-    outline: none;
-  }
-`;
-
-const FocusBorder = styled.span`
-  height: 3.2px;
-  background-color: #1b91f0;
-  width: 0%;
-  transition: all 0.1s ease-in;
-  border-bottom-right-radius: 3.2px;
-  border-bottom-left-radius: 3.2px;
-  align-self: center;
-  position: absolute;
-  bottom: 0;
-`;
-
-const İnputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 47%;
-  position: relative;
-`;
-
-const Label = styled.label`
-  font-size: 0.9rem;
-  color: ${({ theme }) => theme.colors.textColor};
-  margin-bottom: 0.5rem;
-  font-weight: 300;
-  letter-spacing: 0.3px;
-`;
-
-const Container = styled.div`
-  border: 1px solid gainsboro;
-  border-radius: 5px;
-  padding: 0rem 0.4rem;
+const Header = styled.h1`
+  font-size: 1rem;
   color: black;
-  position: relative;
-  transform: ${(props) => (props.isVisible ? "" : "TranslateX(-1200px)")};
-  transition: ease-in-out 0.3s all;
-  :hover img {
-    opacity: 100;
-  }
-`;
-const Deleteİmg = styled.img`
-  width: 1.2rem;
-  cursor: pointer;
-  position: absolute;
-  right: -30px;
-  bottom: 27px;
-  opacity: 0;
-  transition: all 0.5s ease-in;
-`;
-const ContentContainer = styled.div`
-  height: ${(props) =>
-    props.Expanded ? (props.Skills ? "100px" : "500px") : "0px"};
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 0 1rem;
-  transition: ease-in-out 0.5s all;
-  > div {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  > section {
-    display: flex;
-    flex-direction: column;
-  }
+  font-weight: 400;
 `;
 
-const expandCollapseProps = {
-  style: { color: "#191C24", fontSize: "1rem" },
-  onClick: () => SetExpanded((prev) => !prev),
-};
-const ExpandArrow = styled.img`
-  width: 0.8rem;
-`;
-const CollapseArrow = styled.img`
-  width: 0.8rem;
-`;
-const ExpandCollapse = styled.span`
-  color: blue;
-  font-weight: 500;
-  height: 70px;
-  padding: 1rem;
-  font-size: 1px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  transition: all 3s ease-in-out;
-  :hover * {
-    color: ${({ theme }) => theme.colors.highlight};
-  }
-`;
-
-const LanguageHobbyAccordions = () => {
+const LanguageHobbyAccordions = ({ id, type }) => {
+  const [skill, setSkill] = useState(id);
+  const [AccordionTitle, setAccordionTitle] = useState("Not Specified ⚙️");
+  const [isVisible, setİsVisible] = useState(true);
+  const [Expanded, SetExpanded] = useState(false);
+  const dispatch = useDispatch();
+  const handleDelete = () => {
+    setİsVisible(!isVisible);
+    setTimeout(() => dispatch(RemoveAccordion({ id, type })), 300);
+  };
+  const handleFocus = (e) => {
+    const border = e.target.nextElementSibling;
+    border.style.width = "100%";
+  };
+  const handleBlur = (e) => {
+    const border = e.target.nextElementSibling;
+    border.style.width = "0";
+  };
+  const imgProps = {
+    src: "https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-lineal-kiranshastry.png",
+    onClick: handleDelete,
+  };
+  const contProps = {
+    isVisible: isVisible,
+  };
+  const inputProps = {
+    onFocus: (e) => handleFocus(e),
+    onBlur: (e) => handleBlur(e),
+    onChange: (e) => {
+      if (e.target.id === "which") {
+        setAccordionTitle(e.target.value);
+        console.log(type);
+        dispatch(
+          AddAccordionValuesToStore({
+            AccordionType: type,
+            values: {
+              [e.target.id]: e.target.value,
+            },
+            id: id,
+          })
+        );
+      } else {
+        console.log(type);
+        dispatch(
+          AddAccordionValuesToStore({
+            AccordionType: type,
+            values: {
+              [e.target.id]: e.target.value,
+            },
+            id: id,
+          })
+        );
+      }
+    },
+  };
+  const expandCollapseProps = {
+    style: { color: "#191C24", fontSize: "1rem" },
+    onClick: () => SetExpanded((prev) => !prev),
+  };
   return (
     <Container {...contProps}>
       <Deleteİmg {...imgProps}></Deleteİmg>
       <ExpandCollapse {...expandCollapseProps}>
+        <Header>{AccordionTitle}</Header>
         {Expanded ? (
           <CollapseArrow src="https://img.icons8.com/ios-glyphs/30/000000/collapse-arrow.png" />
         ) : (
           <ExpandArrow src="https://img.icons8.com/ios/50/000000/expand-arrow--v1.png" />
         )}
       </ExpandCollapse>
-      <ContentContainer Expanded={Expanded}>
-        <div>
-          <İnputContainer>
-            <Label>Job Title </Label>
-            <İnput id="which" {...inputProps} />
-            <FocusBorder />
-          </İnputContainer>
-          <İnputContainer>
-            <Label>Employer</Label>
-            <İnput id="emp-deg" {...inputProps} />
-            <FocusBorder />
-          </İnputContainer>
-        </div>
-      </ContentContainer>
+
+      {type === "References" ? (
+        <ContentContainer Expanded={Expanded} References={true}>
+          <div>
+            <İnputContainer>
+              <Label>Referent's Full Name </Label>
+              <İnput id="which" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+            <İnputContainer>
+              <Label>Company</Label>
+              <İnput id="company" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+          </div>
+          <div>
+            <İnputContainer>
+              <Label>E-mail</Label>
+              <İnput id="e-mail" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+            <İnputContainer>
+              <Label>Phone</Label>
+              <İnput id="phone" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+          </div>
+        </ContentContainer>
+      ) : (
+        <ContentContainer Expanded={Expanded} Languages={true}>
+          <div>
+            <İnputContainer>
+              <Label>Language </Label>
+              <İnput id="which" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+            <İnputContainer>
+              <Label>Level</Label>
+              <İnput id="emp-deg" {...inputProps} />
+              <FocusBorder />
+            </İnputContainer>
+          </div>
+        </ContentContainer>
+      )}
     </Container>
   );
 };
