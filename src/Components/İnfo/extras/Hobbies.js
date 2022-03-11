@@ -1,43 +1,32 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import TextArea from "../TextArea";
+import { motion } from "framer-motion";
 
-const Container = styled.section``;
+const Container = styled(motion.section)`
+  margin-bottom: 3rem;
+`;
 const Header = styled.h1`
   font-size: 1.4rem;
   color: #00373d;
-  margin-bottom: 1.4rem;
+  margin-bottom: 0.8rem;
   font-weight: 500;
 `;
-
-const Paragraph = styled.p`
-  font-size: 0.9rem;
-  color: ${({ theme }) => theme.colors.textColor};
-  font-weight: 300;
-  margin-bottom: 0.4rem;
-  margin-top: 0.1rem;
-  line-height: 1.5rem;
-  width: 95%;
-`;
-const TextArea = styled.textarea`
-  height: 250px;
-  width: 100%;
-  padding: 1rem;
-  background-color: ${({ theme }) => theme.colors.grayMid};
-  border-radius: 5px;
-  border: none;
-  color: black;
-  resize: none;
-  font-size: 0.9rem;
-  :focus {
-    outline: 2px #1b91f0 solid;
-  }
-`;
+const variants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 100, transition: { duration: 2 } },
+  exit: { opacity: 0, transition: { duration: 1.2 } },
+};
 const Hobbies = () => {
   return (
-    <Container>
+    <Container
+      variants={variants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <Header>Hobbies</Header>
-      <Paragraph>What do you like?</Paragraph>
-      <TextArea />
+      <TextArea type={"Hobbies"} id="hobbiesTextAera" />
     </Container>
   );
 };

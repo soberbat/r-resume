@@ -8,6 +8,7 @@ export const textSlice = createSlice({
       Education: {},
       İnternShips: {},
       Skills: {},
+      Hobbies: {},
     },
     countedWords: {},
   },
@@ -56,6 +57,14 @@ export const textSlice = createSlice({
         state.values.İnternShips = {
           [action.payload.id]: {
             ...state.values.İnternShips[action.payload.id],
+            ...action.payload.values,
+          },
+        };
+      }
+      if (action.payload.AccordionType === "Hobbies") {
+        state.values.Hobbies = {
+          [action.payload.id]: {
+            ...state.values.Hobbies[action.payload.id],
             ...action.payload.values,
           },
         };

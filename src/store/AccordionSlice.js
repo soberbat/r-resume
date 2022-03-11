@@ -9,6 +9,8 @@ export const AccordionSlice = createSlice({
       Education: {},
       İnternShips: {},
       Skills: {},
+      References: {},
+      Languages: {},
     },
   },
   reducers: {
@@ -36,6 +38,18 @@ export const AccordionSlice = createSlice({
       if (action.payload.type === "Skills") {
         state.Accordions.Skills = {
           ...state.Accordions.Skills,
+          ...{ [action.payload.id]: "Accordion" },
+        };
+      }
+      if (action.payload.type === "Languages") {
+        state.Accordions.Languages = {
+          ...state.Accordions.Languages,
+          ...{ [action.payload.id]: "Accordion" },
+        };
+      }
+      if (action.payload.type === "References") {
+        state.Accordions.References = {
+          ...state.Accordions.References,
           ...{ [action.payload.id]: "Accordion" },
         };
       }

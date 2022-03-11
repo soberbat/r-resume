@@ -47,7 +47,7 @@ const FocusBorder = styled.span`
   bottom: 0;
 `;
 
-const İnput = styled.input`
+export const İnput = styled.input`
   background-color: ${({ theme }) => theme.colors.grayMid};
   border-radius: 3.2px;
   border: none;

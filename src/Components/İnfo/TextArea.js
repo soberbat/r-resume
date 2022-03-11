@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { AddAccordionValuesToStore } from "../../store/textSlice";
 
 const SummaryText = styled.textarea`
-  height: 250px;
+  height: ${(props) => (props.type === "Hobbies" ? "120px" : "200px")};
   width: 100%;
   padding: 1rem;
   background-color: ${({ theme }) => theme.colors.grayMid};
@@ -68,7 +68,7 @@ const TextArea = ({ type, id }) => {
   );
   const handleChange = (e) => {
     setValue(e.target.value);
-    dispatch(countWords({ [e.target.id + "Count"]: e.target.value.length }));
+    dispatch(countWords({ [`textArea${id}Count`]: e.target.value.length }));
     dispatch(
       AddAccordionValuesToStore({
         AccordionType: type,
@@ -82,21 +82,24 @@ const TextArea = ({ type, id }) => {
 
   return (
     <MiniCont>
-      <Label>Wanted Job Title </Label>
+      <Label>{type === "Hobbies" ? "What do you like?" : "Description"} </Label>
       <SummaryText
         onChange={(e) => handleChange(e)}
         id={"text-area"}
         defaultValue={value}
+        type={type}
       ></SummaryText>
-      <MiniCont2>
-        <Label>
-          Recruiter Tip : write 200+ characters to increase interview chances{" "}
-        </Label>
-        <Label>
-          {" "}
-          <span> {count}</span> /200+
-        </Label>
-      </MiniCont2>
+      {type != "Hobbies" ? (
+        <MiniCont2>
+          <Label>
+            Recruiter Tip : write 200+ characters to increase interview chances{" "}
+          </Label>
+          <Label>
+            {" "}
+            <span> {count}</span> /200+
+          </Label>
+        </MiniCont2>
+      ) : null}
     </MiniCont>
   );
 };

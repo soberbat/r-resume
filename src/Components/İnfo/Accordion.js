@@ -45,7 +45,7 @@ const ExpandCollapse = styled.span`
     color: ${({ theme }) => theme.colors.highlight};
   }
 `;
-const Deleteİmg = styled.img`
+export const Deleteİmg = styled.img`
   width: 1.2rem;
   cursor: pointer;
   position: absolute;
@@ -57,7 +57,7 @@ const Deleteİmg = styled.img`
 
 const ContentContainer = styled.div`
   height: ${(props) =>
-    props.Expanded ? (props.Skills ? "100px" : "550px") : "0px"};
+    props.Expanded ? (props.Skills ? "100px" : "500px") : "0px"};
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -257,14 +257,15 @@ export const Accordion = ({ id, state, type }) => {
       setSkillLevel(e.target.value);
     },
   };
+  const expandCollapseProps = {
+    style: { color: "#191C24", fontSize: "1rem" },
+    onClick: () => SetExpanded((prev) => !prev),
+  };
 
   return (
     <Container {...contProps}>
       <Deleteİmg {...imgProps}></Deleteİmg>
-      <ExpandCollapse
-        style={{ color: "#191C24", fontSize: "1rem" }}
-        onClick={() => setExpanded((prev) => !prev)}
-      >
+      <ExpandCollapse {...expandCollapseProps}>
         {type === "Skills" ? (
           <SkillNameContainer>
             <span> {skill.length < 23 ? skill : ""} </span>

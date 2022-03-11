@@ -4,7 +4,8 @@ import SvgHobby from "./svg/Hobby";
 import SvgLanguage from "./svg/Language";
 import SvgReference from "./svg/Reference";
 import Hobbies from "./Hobbies";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { ExpandCollapseForm } from "../ExpandCollapseForm";
 
 const Container = styled.section`
   margin-bottom: 5rem;
@@ -50,8 +51,8 @@ const Extras = () => {
   });
   const [Extraİtems, setExtraİtems] = useState({
     hobbies: <SvgHobby style={{ width: "50px" }} />,
-    reference: <SvgReference style={{ width: "50px" }} />,
-    language: <SvgLanguage style={{ width: "50px" }} />,
+    references: <SvgReference style={{ width: "50px" }} />,
+    languages: <SvgLanguage style={{ width: "50px" }} />,
   });
   const handleClick = (e) => {
     setExtraSections((prev) => {
@@ -59,6 +60,7 @@ const Extras = () => {
         ...prev,
         [e.target.id]: !prev[e.target.id],
       };
+      console.log(newState);
       return newState;
     });
   };
@@ -69,14 +71,18 @@ const Extras = () => {
   return (
     <Container>
       <AddedExtraSectionContainer>
+        {/* <AnimatePresence> */}
         {ExtraSections.hobbies && <Hobbies />}
+        {ExtraSections.references && <ExpandCollapseForm type="References" />}
+        {ExtraSections.languages && <ExpandCollapseForm type="Languages" />}
+        {/* </AnimatePresence> */}
       </AddedExtraSectionContainer>
       <Options>
         <Header>Add Section</Header>
         <div>
           {Object.keys(Extraİtems).map((item) => {
             return (
-              <Option key={"22323"}>
+              <Option key={item}>
                 <span>{Extraİtems[item]}</span>
                 <span id={item} {...OptionProps}>
                   {item[0].toUpperCase() + item.substring(1)}{" "}
