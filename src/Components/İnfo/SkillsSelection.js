@@ -80,7 +80,6 @@ const SkillsSelection = ({ state, type }) => {
     onClick: (e) => {
       dispatch(AddAccordion({ id: e.target.id, type: type, level: 5 }));
       let toSearchFor = e.target.id;
-      console.log(toSearchFor);
       setSelections((prev) => prev.filter((item) => toSearchFor != item));
     },
     initial: {

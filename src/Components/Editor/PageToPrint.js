@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 
 export const PageToPrint = React.forwardRef((props, ref) => {
   const { colors } = props;
-  const state = useSelector((state) => state.forms.values);
+  const state = useSelector((state) => state.values.values);
   console.log(state);
 
   const PageToPrint = styled.div`
@@ -19,7 +19,13 @@ export const PageToPrint = React.forwardRef((props, ref) => {
 
   return (
     <PageToPrint ref={ref}>
-      <h1> title: {state.jobTitle} </h1>
+      <motion.h1
+        animate={{ opacity: 100, transition: { duration: 3 } }}
+        initial={{ opacity: 0 }}
+      >
+        {" "}
+        title: {state[`job-title`]}
+      </motion.h1>
     </PageToPrint>
   );
 });

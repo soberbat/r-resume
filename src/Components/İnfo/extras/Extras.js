@@ -72,11 +72,15 @@ const Extras = () => {
   return (
     <Container>
       <AddedExtraSectionContainer>
-        {/* <AnimatePresence> */}
-        {ExtraSections.hobbies && <Hobbies />}
-        {ExtraSections.references && <ExpandCollapseForm type="References" />}
-        {ExtraSections.languages && <ExpandCollapseForm type="Languages" />}
-        {/* </AnimatePresence> */}
+        {
+          <AnimatePresence>
+            {ExtraSections.hobbies && <Hobbies />}
+            {ExtraSections.references && (
+              <ExpandCollapseForm type="References" />
+            )}
+            {ExtraSections.languages && <ExpandCollapseForm type="Languages" />}
+          </AnimatePresence>
+        }
       </AddedExtraSectionContainer>
       <Options>
         <Header>Add Section</Header>

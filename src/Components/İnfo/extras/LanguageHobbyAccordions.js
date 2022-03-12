@@ -32,6 +32,8 @@ const Header = styled.h1`
   font-weight: 400;
 `;
 
+const Select = styled.select``;
+
 const LanguageHobbyAccordions = ({ id, type }) => {
   const [skill, setSkill] = useState(id);
   const [AccordionTitle, setAccordionTitle] = useState("Not Specified ⚙️");
@@ -140,7 +142,7 @@ const LanguageHobbyAccordions = ({ id, type }) => {
             </İnputContainer>
             <İnputContainer>
               <Label>Level</Label>
-              <İnput id="emp-deg" {...inputProps} />
+              <İnput id="level" {...inputProps} />
               <FocusBorder />
             </İnputContainer>
           </div>

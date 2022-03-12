@@ -124,9 +124,10 @@ export const Label = styled.label`
 //STYLES
 const RangeContainer = styled.div`
   width: 47%;
-
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+
+  align-items: flex-start;
 `;
 const Range = styled.input.attrs({
   type: "range",
@@ -268,7 +269,7 @@ export const Accordion = ({ id, state, type }) => {
       <ExpandCollapse {...expandCollapseProps}>
         {type === "Skills" ? (
           <SkillNameContainer>
-            <span> {skill.length < 23 ? skill : ""} </span>
+            <span> {skill.length > 23 ? "Empty 👀" : skill} </span>
             <span>{levels()} </span>
           </SkillNameContainer>
         ) : (
@@ -294,6 +295,7 @@ export const Accordion = ({ id, state, type }) => {
               <FocusBorder />
             </İnputContainer>
             <RangeContainer>
+              <Label>Level</Label>
               <Range {...SkillsProps}></Range>
             </RangeContainer>
           </div>
@@ -302,12 +304,12 @@ export const Accordion = ({ id, state, type }) => {
         <ContentContainer Expanded={Expanded}>
           <div>
             <İnputContainer>
-              <Label>Job Title </Label>
+              <Label>{state.which} </Label>
               <İnput id="which" {...inputProps} />
               <FocusBorder />
             </İnputContainer>
             <İnputContainer>
-              <Label>Employer</Label>
+              <Label>{state.who}</Label>
               <İnput id="emp-deg" {...inputProps} />
               <FocusBorder />
             </İnputContainer>
@@ -319,7 +321,7 @@ export const Accordion = ({ id, state, type }) => {
               <FocusBorder />
             </İnputContainer>
             <İnputContainer>
-              <Label>City</Label>
+              <Label>{state.where}</Label>
               <İnput id="where" {...inputProps} />
               <FocusBorder />
             </İnputContainer>

@@ -5,7 +5,7 @@ import PropSlice from "./PropSlice";
 
 export default configureStore({
   reducer: {
-    forms: textSlice,
+    values: textSlice,
     Accordions: AccordionSlice,
     Properties: PropSlice,
   },

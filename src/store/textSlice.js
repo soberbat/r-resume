@@ -9,6 +9,8 @@ export const textSlice = createSlice({
       İnternShips: {},
       Skills: {},
       Hobbies: {},
+      Languages: {},
+      References: {},
     },
     countedWords: {},
   },
@@ -65,6 +67,22 @@ export const textSlice = createSlice({
         state.values.Hobbies = {
           [action.payload.id]: {
             ...state.values.Hobbies[action.payload.id],
+            ...action.payload.values,
+          },
+        };
+      }
+      if (action.payload.AccordionType === "References") {
+        state.values.References = {
+          [action.payload.id]: {
+            ...state.values.References[action.payload.id],
+            ...action.payload.values,
+          },
+        };
+      }
+      if (action.payload.AccordionType === "Languages") {
+        state.values.Languages = {
+          [action.payload.id]: {
+            ...state.values.Languages[action.payload.id],
             ...action.payload.values,
           },
         };

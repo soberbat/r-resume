@@ -26,8 +26,9 @@ const İnputContainerFull = styled.div`
   width: 100%;
   position: relative;
 `;
-
+const timeout = null;
 function Forms() {
+  let timeout = null;
   // ──────────────────────────────────────── Input Props and functions ──────────
   const dispatch = useDispatch();
   const handleFocus = (e) => {
@@ -42,7 +43,11 @@ function Forms() {
     onFocus: (e) => handleFocus(e),
     onBlur: (e) => handleBlur(e),
     onChange: (e) => {
-      dispatch(addToStore({ [e.target.id]: e.target.value }));
+      clearTimeout(timeout);
+      timeout = setTimeout(
+        () => dispatch(addToStore({ [e.target.id]: e.target.value })),
+        500
+      );
     },
   };
   // ──────────────────────────────────────────────────

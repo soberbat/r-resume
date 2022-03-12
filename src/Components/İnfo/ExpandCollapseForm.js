@@ -5,9 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { AddAccordion } from "../../store/AccordionSlice";
 import { Accordion } from "./Accordion";
 import store from "../../store/store";
+import { motion } from "framer-motion";
 import LanguageHobbyAccordions from "./extras/LanguageHobbyAccordions";
 
-const Wrapper = styled.div``;
+const Wrapper = styled(motion.div)``;
 const AddContainer = styled.div`
   padding: 0.6rem 0.8rem;
   color: ${({ theme }) => theme.colors.highlight};
@@ -45,8 +46,18 @@ export const ExpandCollapseForm = ({ type }) => {
     margin-bottom: 1rem;
     font-weight: 500;
   `;
+  const variants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 100, transition: { duration: 1 } },
+    exit: { opacity: 0, transition: { duration: 2, delay: 0 } },
+  };
   return (
-    <Wrapper>
+    <Wrapper
+      variants={variants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       {type === "References" || type === "Languages" ? (
         <Header>{type}</Header>
       ) : null}
