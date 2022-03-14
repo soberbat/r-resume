@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { addToStore, countWords } from "../../store/textSlice";
+import { addToStore, countWords, setVisibility } from "../../store/textSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { AddAccordionValuesToStore } from "../../store/textSlice";
 
@@ -62,10 +62,12 @@ const MiniCont = styled.div`
 const TextArea = ({ type, id }) => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
+  const visibility = useSelector((state) => state.values.visibility);
 
   const count = useSelector(
-    (state) => state.forms.countedWords[`textArea${id}Count`]
+    (state) => state.values.countedWords[`textArea${id}Count`]
   );
+
   const handleChange = (e) => {
     setValue(e.target.value);
     dispatch(countWords({ [`textArea${id}Count`]: e.target.value.length }));
@@ -96,7 +98,7 @@ const TextArea = ({ type, id }) => {
           </Label>
           <Label>
             {" "}
-            <span> {count}</span> /200+
+            <span> {count ? count : null}</span> /200+
           </Label>
         </MiniCont2>
       ) : null}

@@ -15,7 +15,7 @@ function Infos({ colors, sides }) {
   const Wrapper = styled(motion.div)`
     background-color: ${colors.white};
     height: 100vh;
-    width: 50%;
+    width: 60%;
     color: blue;
     padding: 1rem 3rem;
     color: white;

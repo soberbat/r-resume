@@ -1,9 +1,11 @@
 import { createSlice, current } from "@reduxjs/toolkit";
+import { startsWith } from "lodash";
 
 export const textSlice = createSlice({
   name: "textSlice",
   initialState: {
     values: {
+      forms: {},
       EmploymentHistory: {},
       Education: {},
       İnternShips: {},
@@ -12,11 +14,14 @@ export const textSlice = createSlice({
       Languages: {},
       References: {},
     },
+    visibility: false,
+    typed: null,
     countedWords: {},
   },
+
   reducers: {
     addToStore: (state, action) => {
-      state.values = { ...state.values, ...action.payload };
+      state.values.forms = { ...state.values.forms, ...action.payload };
     },
     countWords: (state, action) => {
       state.countedWords = {
@@ -48,6 +53,7 @@ export const textSlice = createSlice({
         };
       }
       if (action.payload.AccordionType === "Education") {
+        console.log(current(state));
         state.values.Education = {
           [action.payload.id]: {
             ...state.values.Education[action.payload.id],
@@ -64,6 +70,7 @@ export const textSlice = createSlice({
         };
       }
       if (action.payload.AccordionType === "Hobbies") {
+        console.log("fonksşyona girdi");
         state.values.Hobbies = {
           [action.payload.id]: {
             ...state.values.Hobbies[action.payload.id],
@@ -88,15 +95,22 @@ export const textSlice = createSlice({
         };
       }
     },
+
+    setVisibility: (state, action) => {
+      console.log(action.payload);
+      state.visibility = action.payload.value;
+    },
   },
 });
 
 export const {
   addToStore,
   countWords,
+  setClicked,
   AddToStoreEmploymentHistory,
   AddToStoreSkills,
   AddAccordionValuesToStore,
+  setVisibility,
 } = textSlice.actions;
 
 export default textSlice.reducer;

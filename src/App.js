@@ -7,6 +7,8 @@ import Infos from "./Components/İnfo/İnfos";
 import { motion, AnimatePresence } from "framer-motion";
 import Overlay from "./Components/Overlay";
 import { ThemeProvider } from "styled-components";
+import { setClicked, setVisibility } from "./store/textSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const theme = {
   colors: {
@@ -24,8 +26,10 @@ const theme = {
 
 function App() {
   // STATE
+  const dispatch = useDispatch();
+
   const [colors, setColors] = useState({
-    black: "#143642",
+    black: "#00120B",
     darkGray: "#191C24",
     gray: "#2B2E2F",
     grayMid: "#f0f2f9",
