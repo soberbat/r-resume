@@ -69,36 +69,36 @@ function Additionals() {
             <div key={"1312313"}>
               <İnputContainer>
                 <Label>Coutry </Label>
-                <İnput id="country" {...inputProps} />
+                <İnput id="Country" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
               <İnputContainer>
                 <Label>City</Label>
-                <İnput id="city" {...inputProps} />
+                <İnput id="City" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
             </div>
             <div key="w42424">
               <İnputContainer>
                 <Label>Address </Label>
-                <İnput id="address" {...inputProps} />
+                <İnput id="Address" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
               <İnputContainer>
                 <Label>Driving License</Label>
-                <İnput id="driving-license" {...inputProps} />
+                <İnput id="Driving license" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
             </div>
             <div key="xfsfsf">
               <İnputContainer>
                 <Label>Nationality </Label>
-                <İnput id="nationality" {...inputProps} />
+                <İnput id="Nationality" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
               <İnputContainer>
                 <Label>Date of Birth</Label>
-                <İnput id="birth-date" {...inputProps} />
+                <İnput id="Birth date" {...inputProps} />
                 <FocusBorder />
               </İnputContainer>
             </div>

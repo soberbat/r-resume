@@ -21,6 +21,7 @@ export const textSlice = createSlice({
 
   reducers: {
     addToStore: (state, action) => {
+      console.log(current(state));
       state.values.forms = { ...state.values.forms, ...action.payload };
     },
     countWords: (state, action) => {
@@ -53,7 +54,6 @@ export const textSlice = createSlice({
         };
       }
       if (action.payload.AccordionType === "Education") {
-        console.log(current(state));
         state.values.Education = {
           [action.payload.id]: {
             ...state.values.Education[action.payload.id],
@@ -97,7 +97,6 @@ export const textSlice = createSlice({
     },
 
     setVisibility: (state, action) => {
-      console.log(action.payload);
       state.visibility = action.payload.value;
     },
   },

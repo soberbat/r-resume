@@ -22,7 +22,7 @@ function Editor({ colors }) {
     width: 40%;
     height: 100vh;
     position: fixed;
-    padding: 0rem 4rem;
+    padding: 0rem 2.3rem;
     padding-top: 2rem;
     padding-bottom: 1rem;
     right: 0;
@@ -33,15 +33,23 @@ function Editor({ colors }) {
   `;
 
   const Button = styled.button`
-    background-color: ${colors.grayMid};
+    background-color: ${colors.white};
     padding: 0.9rem 2.1rem;
     border: none;
     border-radius: 3.2px;
-    color: ${colors.black};
+    color: 00373d;
     font-size: 1rem;
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Sarabun", sans-serif;
     font-weight: 700;
-    width: 50%;
+    width: 29%;
+    box-shadow: 0px 0px 20px 7px rgba(240, 242, 249, 7);
+    letter-spacing: 1.4px;
+    transition: all 0.3s ease-out;
+    z-index: 1000;
+    :hover {
+      box-shadow: 0px 10px 40px 16px rgba(240, 242, 249, 7);
+      transform: translateY(-5px);
+    }
   `;
 
   const Container = styled(motion.div)`
@@ -82,7 +90,7 @@ function Editor({ colors }) {
     <Wrapper>
       <PageToPrint colors={colors} ref={componentRef} />
       <Container>
-        <Button onClick={handlePrint}>Download PDF</Button>
+        <Button onClick={handlePrint}>Download 🥷🏼</Button>
         <span>{visiblity && <SavingSpinner key="131414" id="1414141" />}</span>
       </Container>
     </Wrapper>

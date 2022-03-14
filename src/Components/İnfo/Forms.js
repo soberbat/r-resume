@@ -71,12 +71,12 @@ function Forms() {
       <div>
         <İnputContainer>
           <Label>Email</Label>
-          <İnput id="email" {...inputProps} />
+          <İnput id="Email" {...inputProps} />
           <FocusBorder />
         </İnputContainer>
         <İnputContainer>
           <Label>Phone</Label>
-          <İnput id="phone" {...inputProps} />
+          <İnput id="Phone" {...inputProps} />
           <FocusBorder />
         </İnputContainer>
       </div>

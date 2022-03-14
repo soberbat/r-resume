@@ -104,7 +104,7 @@ export const İnput = styled.input`
   border-radius: 3.2px;
   border: none;
   color: ${({ theme }) => theme.colors.gray};
-  padding: 0.92rem 0.4rem;
+  padding: 1.2rem 0.4rem;
   width: 100%;
   font-size: 0.9rem;
   text-indent: 10px;

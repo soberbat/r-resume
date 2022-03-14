@@ -29,7 +29,7 @@ function App() {
   const dispatch = useDispatch();
 
   const [colors, setColors] = useState({
-    black: "#00120B",
+    black: "#143642",
     darkGray: "#191C24",
     gray: "#2B2E2F",
     grayMid: "#f0f2f9",

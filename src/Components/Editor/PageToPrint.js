@@ -34,13 +34,14 @@ export const PageToPrint = React.forwardRef((props, ref) => {
 
   const PageToPrint = styled.div`
     overflow: hidden;
-    /* border: 1px solid black; */
     height: 90%;
     width: 100%;
+    transition: all 0.3s ease-out;
     background-color: ${colors.white};
-    border-radius: 6px;
+    border-radius: 5px;
+    border: 1.2px solid ${colors.grayMid};
     padding: 2rem 3rem;
-    box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 20px 7px rgba(240, 242, 249, 7);
     color: black;
     position: relative;
 
@@ -62,14 +63,19 @@ export const PageToPrint = React.forwardRef((props, ref) => {
     }
 
     @media print {
-      font-family: "Sarabun", sans-serif;
+      font-family: "Sarabun";
       font-size: 20px;
-      color: blue;
+
       height: 298mm;
       width: 210mm;
       ::-webkit-scrollbar {
         width: 0 !important;
       }
+    }
+
+    :hover {
+      box-shadow: 0px 10px 40px 16px rgba(240, 242, 249, 7);
+      transform: translateY(-5px);
     }
   `;
 
