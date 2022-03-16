@@ -9,6 +9,7 @@ import TextArea from "./TextArea";
 import { AddAccordion } from "../../store/AccordionSlice";
 import { AddToStoreSkills } from "../../store/textSlice";
 import { AddAccordionValuesToStore } from "../../store/textSlice";
+import { RemoveAccordionValues } from "../../store/textSlice";
 
 //STYLES
 export const Container = styled.div`
@@ -204,6 +205,7 @@ export const Accordion = ({ id, state, type }) => {
   const handleDelete = () => {
     setİsVisible(!isVisible);
     setTimeout(() => dispatch(RemoveAccordion({ id, type })), 300);
+    dispatch(RemoveAccordionValues({ id, type }));
   };
 
   const handleFocus = (e) => {

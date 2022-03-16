@@ -80,6 +80,7 @@ export const textSlice = createSlice({
       }
       if (action.payload.AccordionType === "References") {
         state.values.References = {
+          ...state.values.References,
           [action.payload.id]: {
             ...state.values.References[action.payload.id],
             ...action.payload.values,
@@ -95,7 +96,19 @@ export const textSlice = createSlice({
         };
       }
     },
+    RemoveAccordionValues: (state, action) => {
+      //
+      console.log(action.payload);
+      let theState = state.values[action.payload.type];
 
+      // oldObj = { ...state.values };
+
+      delete theState[action.payload.id];
+
+      state.values[action.payloadtype] = { ...theState };
+
+      // state.values[action.payload.type] = { ...newState };
+    },
     setVisibility: (state, action) => {
       state.visibility = action.payload.value;
     },
@@ -105,6 +118,7 @@ export const textSlice = createSlice({
 export const {
   addToStore,
   countWords,
+  RemoveAccordionValues,
   setClicked,
   AddToStoreEmploymentHistory,
   AddToStoreSkills,

@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin-bottom: 1rem;
+`;
 const NameTitleContainer = styled.div`
   h1 {
     font-size: 2rem;
@@ -20,13 +22,13 @@ const DetailsContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0.3rem;
-  margin-top: 2.3rem;
+  margin-top: 1.3rem;
   font-size: 0.4rem;
 `;
 
 const Detail = styled.div`
   display: flex;
-  width: 47%;
+  width: 35%;
   font-size: 0.45rem;
   justify-content: flex-start;
   margin-bottom: 0.3rem;

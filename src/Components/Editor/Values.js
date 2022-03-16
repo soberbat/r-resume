@@ -8,14 +8,17 @@ const Container = styled.div`
   margin-top: 2rem;
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   width: 30%;
+
   font-size: 0.6rem;
   font-weight: 600;
   margin-bottom: 1rem;
   color: #525252;
   text-transform: uppercase;
+
   span {
+    padding-right: 30px;
     padding-bottom: 0.3rem;
     border-bottom: 1px solid black;
   }
@@ -23,7 +26,9 @@ const Title = styled.h1`
 
 const İnfoContainer = styled.div`
   display: flex;
+
   align-items: flex-start;
+  margin-top: 1rem;
   span {
     width: 30%;
     font-size: 0.4rem;
@@ -51,7 +56,7 @@ const İnfos = styled.div`
     }
     span {
       font-size: 0.6rem;
-
+      padding: 0px 0px;
       font-style: italic;
 
       font-weight: 300;
@@ -68,32 +73,38 @@ const İnfos = styled.div`
   }
 `;
 
-const Employment = () => {
+const Values = ({ Accordion }) => {
+  const state = useSelector((state) => state.values.values[Accordion]);
+  const accordions = Object.keys(state).map((accordion) => state[accordion]);
+  console.log(accordions);
   return (
     <Container>
       <Title>
-        <span> 02 Employment History</span>
+        <span>
+          {" "}
+          {Accordion === "EmploymentHistory"
+            ? "Employment History"
+            : Accordion}{" "}
+        </span>
       </Title>
-      <İnfoContainer>
-        <span>03/03/1995-03/04/2022</span>
-        <İnfos>
-          <div>
-            <h4>Worker At heymypet</h4>
-            <span>İstanbul</span>
-          </div>
-          <p>
-            {" "}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
-            facilis saepe in similique optio earum vero, hic quos sed labore
-            ipsam aliquam necessitatibus quasi obcaecati blanditiis a deserunt
-            porro assumenda! Voluptas laboriosam, ipsam iure officiis nulla
-            dolore recusandae optio harum quod reiciendis quis quibusdam
-            adipisci quasi molestiae suscipit voluptates facere voluptate
-          </p>
-        </İnfos>
-      </İnfoContainer>
+      {accordions.map((accordion) => {
+        return (
+          <İnfoContainer>
+            <span>{accordion["when"]}</span>{" "}
+            <İnfos>
+              <div>
+                <h4>
+                  {accordion["which"]} - {accordion["emp-deg"]}
+                </h4>
+                <span>{accordion["where"]} </span>
+              </div>
+              <p>{accordion["text-area"]}</p>
+            </İnfos>
+          </İnfoContainer>
+        );
+      })}
     </Container>
   );
 };
 
-export default Employment;
+export default Values;
