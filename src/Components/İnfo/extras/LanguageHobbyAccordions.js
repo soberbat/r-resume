@@ -1,17 +1,9 @@
 import React, { useState } from "react";
-import { ExpandCollapseForm } from "../ExpandCollapseForm";
-import styled, { css } from "styled-components";
-import { useSelector } from "react-redux";
-import {
-  RemoveAccordion,
-  SetExpandCollapse,
-} from "../../../store/AccordionSlice";
+import styled from "styled-components";
+import { RemoveAccordion } from "../../../store/AccordionSlice";
 import { useDispatch } from "react-redux";
-import { addToStore } from "../../../store/textSlice";
-import { current } from "@reduxjs/toolkit";
-import { AddAccordion } from "../../../store/AccordionSlice";
-import { AddToStoreSkills } from "../../../store/textSlice";
 import { AddAccordionValuesToStore } from "../../../store/textSlice";
+import { RemoveAccordionValues } from "../../../store/textSlice";
 import {
   Deleteİmg,
   Container,
@@ -23,7 +15,6 @@ import {
   FocusBorder,
   İnput,
   Label,
-  AccordionHeader,
 } from "../Accordion";
 
 const Header = styled.h1`
@@ -31,8 +22,6 @@ const Header = styled.h1`
   color: black;
   font-weight: 400;
 `;
-
-const Select = styled.select``;
 
 const LanguageHobbyAccordions = ({ id, type }) => {
   const [skill, setSkill] = useState(id);
@@ -43,6 +32,7 @@ const LanguageHobbyAccordions = ({ id, type }) => {
   const handleDelete = () => {
     setİsVisible(!isVisible);
     setTimeout(() => dispatch(RemoveAccordion({ id, type })), 300);
+    dispatch(RemoveAccordionValues({ id: id, type: type }));
   };
   const handleFocus = (e) => {
     const border = e.target.nextElementSibling;
@@ -65,7 +55,7 @@ const LanguageHobbyAccordions = ({ id, type }) => {
     onChange: (e) => {
       if (e.target.id === "which") {
         setAccordionTitle(e.target.value);
-        console.log(type);
+
         dispatch(
           AddAccordionValuesToStore({
             AccordionType: type,
@@ -76,7 +66,6 @@ const LanguageHobbyAccordions = ({ id, type }) => {
           })
         );
       } else {
-        console.log(type);
         dispatch(
           AddAccordionValuesToStore({
             AccordionType: type,

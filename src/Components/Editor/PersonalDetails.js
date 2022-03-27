@@ -49,9 +49,7 @@ const PersonalDetails = () => {
   const PersonalDetailsValues = useSelector(
     (state) => state.values.values.forms
   );
-  Object.keys(PersonalDetailsValues).map((item) => {
-    console.log(PersonalDetailsValues[item]);
-  });
+  Object.keys(PersonalDetailsValues).map((item) => {});
   return (
     <Container>
       <NameTitleContainer>
@@ -72,7 +70,6 @@ const PersonalDetails = () => {
               item != "summary"
           )
           .map((item) => {
-            console.log(item);
             return (
               <Detail>
                 <span>{item} </span>

@@ -4,17 +4,17 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function Overlay({ colors }) {
   const [isVisible, setİsVibisble] = useState(true);
-  // STYLES
+
   const Overlay = styled(motion.div)`
-    background-color: ${colors.white};
+    background-color: ${({ theme }) => theme.colors.white};
     width: 100%;
     height: 100%;
     z-index: -10;
     position: absolute;
     right: 0;
-    background-color: ${colors.black};
+    background-color: ${({ theme }) => theme.colors.black};
   `;
-  // STYLES
+
   return (
     <>
       <AnimatePresence exitBeforeEnter>

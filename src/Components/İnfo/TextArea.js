@@ -17,6 +17,10 @@ const SummaryText = styled.textarea`
   :focus {
     outline: 2px #1b91f0 solid;
   }
+
+  @media (max-width: 768px) {
+    height: ${(props) => (props.type === "Hobbies" ? "100px" : "100px")};
+  }
 `;
 const Label = styled.label`
   font-size: 0.86rem;

@@ -8,8 +8,8 @@ function Logo({ AnimateLogo }) {
 
   const childVar = {
     initial: {
-      x: "400%",
-      y: -200,
+      x: "350%",
+      y: "-50%",
       width: "20%",
     },
     animated: {

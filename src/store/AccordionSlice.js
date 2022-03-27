@@ -12,6 +12,7 @@ export const AccordionSlice = createSlice({
       References: {},
       Languages: {},
     },
+    PreviewVisibility: false,
   },
   reducers: {
     AddAccordion: (state, action) => {
@@ -119,9 +120,13 @@ export const AccordionSlice = createSlice({
         };
       }
     },
+    TogglePreviewVisibility: (state, action) => {
+      state.PreviewVisibility = !state.PreviewVisibility;
+    },
   },
 });
 
-export const { AddAccordion, RemoveAccordion } = AccordionSlice.actions;
+export const { AddAccordion, RemoveAccordion, TogglePreviewVisibility } =
+  AccordionSlice.actions;
 
 export default AccordionSlice.reducer;

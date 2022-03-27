@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
-import { useSelector } from "react-redux";
+import styled from "styled-components";
 import { RemoveAccordion, SetExpandCollapse } from "../../store/AccordionSlice";
 import { useDispatch } from "react-redux";
-import { addToStore } from "../../store/textSlice";
-import { current } from "@reduxjs/toolkit";
 import TextArea from "./TextArea";
-import { AddAccordion } from "../../store/AccordionSlice";
 import { AddToStoreSkills } from "../../store/textSlice";
 import { AddAccordionValuesToStore } from "../../store/textSlice";
 import { RemoveAccordionValues } from "../../store/textSlice";
 
-//STYLES
 export const Container = styled.div`
   border: 1px solid gainsboro;
   border-radius: 5px;
@@ -20,16 +15,20 @@ export const Container = styled.div`
   position: relative;
   transform: ${(props) => (props.isVisible ? "" : "TranslateX(-1200px)")};
   transition: ease-in-out 0.3s all;
+
   :hover img {
     opacity: 100;
   }
 `;
+
 export const ExpandArrow = styled.img`
   width: 0.8rem;
 `;
+
 export const CollapseArrow = styled.img`
   width: 0.8rem;
 `;
+
 export const ExpandCollapse = styled.span`
   color: blue;
   font-weight: 500;
@@ -42,6 +41,7 @@ export const ExpandCollapse = styled.span`
   justify-content: space-between;
   gap: 1rem;
   transition: all 3s ease-in-out;
+
   :hover * {
     color: ${({ theme }) => theme.colors.highlight};
   }
@@ -55,6 +55,7 @@ export const Deleteİmg = styled.img`
   opacity: 0;
   transition: all 0.5s ease-in;
 `;
+
 export const ContentContainer = styled.div`
   height: ${(props) =>
     props.Expanded
@@ -66,12 +67,14 @@ export const ContentContainer = styled.div`
         ? "100px"
         : "500px"
       : "0px"};
+
   overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding: 0 1rem;
   transition: ease-in-out 0.5s all;
+
   > div {
     display: flex;
     justify-content: space-between;
@@ -81,6 +84,19 @@ export const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
   }
+
+  @media (max-width: 768px) {
+    height: ${(props) =>
+      props.Expanded
+        ? props.Skills
+          ? "100px"
+          : props.References
+          ? "110px"
+          : props.Languages
+          ? "100px"
+          : "400px"
+        : "0px"};
+  }
 `;
 export const İnputContainer = styled.div`
   display: flex;
@@ -89,6 +105,7 @@ export const İnputContainer = styled.div`
   width: 47%;
   position: relative;
 `;
+
 export const FocusBorder = styled.span`
   height: 3.2px;
   background-color: #1b91f0;
@@ -100,6 +117,7 @@ export const FocusBorder = styled.span`
   position: absolute;
   bottom: 0;
 `;
+
 export const İnput = styled.input`
   background-color: ${({ theme }) => theme.colors.grayMid};
   border-radius: 3.2px;
@@ -114,7 +132,12 @@ export const İnput = styled.input`
   :focus {
     outline: none;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.6rem 0.2rem;
+  }
 `;
+
 export const Label = styled.label`
   font-size: 0.86rem;
   color: ${({ theme }) => theme.colors.textColor};
@@ -122,14 +145,14 @@ export const Label = styled.label`
   font-weight: 300;
   letter-spacing: 0.3px;
 `;
-//STYLES
+
 const RangeContainer = styled.div`
   width: 47%;
   display: flex;
   flex-direction: column;
-
   align-items: flex-start;
 `;
+
 const Range = styled.input.attrs({
   type: "range",
   min: 1,
@@ -142,7 +165,6 @@ const Range = styled.input.attrs({
   width: 100%;
   height: 65%;
   border-radius: 4px;
-
   background: ${({ theme }) => theme.colors.grayMid};
 
   ::-webkit-slider-thumb {
@@ -162,18 +184,34 @@ const Range = styled.input.attrs({
     border-radius: 50%;
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.5);
   }
+
+  @media (max-width: 768px) {
+    ::-webkit-slider-thumb {
+      height: 35px;
+      width: 60px;
+    }
+
+    ::-moz-range-thumb {
+      width: 24px;
+      height: 30px;
+      -moz-appearance: none;
+    }
+  }
 `;
+
 const SkillNameContainer = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   gap: 0.4rem;
+
   span:nth-child(2) {
     font-weight: 200;
     font-size: 0.8rem;
     color: ${({ theme }) => theme.colors.textColor};
   }
 `;
+
 export const AccordionHeader = styled.span`
   font-size: 1rem;
 `;
@@ -185,6 +223,7 @@ export const Accordion = ({ id, state, type }) => {
   const [isVisible, setİsVisible] = useState(true);
   const [Expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
+
   const levels = () => {
     if (skillLevel === "1") {
       return "Novice";
@@ -202,6 +241,7 @@ export const Accordion = ({ id, state, type }) => {
       return "Expert";
     }
   };
+
   const handleDelete = () => {
     setİsVisible(!isVisible);
     setTimeout(() => dispatch(RemoveAccordion({ id, type })), 300);
@@ -217,20 +257,23 @@ export const Accordion = ({ id, state, type }) => {
     const border = e.target.nextElementSibling;
     border.style.width = "0";
   };
+
   const imgProps = {
     src: "https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-lineal-kiranshastry.png",
     onClick: handleDelete,
   };
+
   const contProps = {
     isVisible: isVisible,
   };
+
   const inputProps = {
     onFocus: (e) => handleFocus(e),
     onBlur: (e) => handleBlur(e),
     onChange: (e) => {
       if (e.target.id === "which") {
         setAccordionTitle(e.target.value);
-        console.log(type);
+
         dispatch(
           AddAccordionValuesToStore({
             AccordionType: type,
@@ -241,7 +284,6 @@ export const Accordion = ({ id, state, type }) => {
           })
         );
       } else {
-        console.log(type);
         dispatch(
           AddAccordionValuesToStore({
             AccordionType: type,
@@ -254,12 +296,14 @@ export const Accordion = ({ id, state, type }) => {
       }
     },
   };
+
   const SkillsProps = {
     onChange: (e) => {
-      dispatch(AddToStoreSkills({ skill: skill, level: e.target.value }));
       setSkillLevel(e.target.value);
+      dispatch(AddToStoreSkills({ skill: skill, level: e.target.value }));
     },
   };
+
   const expandCollapseProps = {
     style: { color: "#191C24", fontSize: "1rem" },
     onClick: () => setExpanded((prev) => !prev),
@@ -316,6 +360,7 @@ export const Accordion = ({ id, state, type }) => {
               <FocusBorder />
             </İnputContainer>
           </div>
+
           <div>
             <İnputContainer>
               <Label>Start & End Date </Label>

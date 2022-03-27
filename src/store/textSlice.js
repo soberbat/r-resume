@@ -21,7 +21,6 @@ export const textSlice = createSlice({
 
   reducers: {
     addToStore: (state, action) => {
-      console.log(current(state));
       state.values.forms = { ...state.values.forms, ...action.payload };
     },
     countWords: (state, action) => {
@@ -70,7 +69,6 @@ export const textSlice = createSlice({
         };
       }
       if (action.payload.AccordionType === "Hobbies") {
-        console.log("fonksşyona girdi");
         state.values.Hobbies = {
           [action.payload.id]: {
             ...state.values.Hobbies[action.payload.id],
@@ -98,14 +96,14 @@ export const textSlice = createSlice({
     },
     RemoveAccordionValues: (state, action) => {
       //
-      console.log(action.payload);
+
       let theState = state.values[action.payload.type];
 
       // oldObj = { ...state.values };
 
       delete theState[action.payload.id];
 
-      state.values[action.payloadtype] = { ...theState };
+      state.values[action.payload.type] = { ...theState };
 
       // state.values[action.payload.type] = { ...newState };
     },

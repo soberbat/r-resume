@@ -16,7 +16,6 @@ const PageToPrintt = styled.div`
   overflow-x: hidden;
   height: 90%;
   width: 100%;
-
   transition: all 0.3s ease-out;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
@@ -32,6 +31,7 @@ const PageToPrintt = styled.div`
     border-radius: 100px;
     box-shadow: 100px px 100px 100px rgba(240, 242, 249, 100);
   }
+
   ::-webkit-scrollbar-track {
     background-color: white;
     border-radius: 12px;
@@ -47,7 +47,6 @@ const PageToPrintt = styled.div`
   @media print {
     font-family: "Sarabun";
     scrollbar-width: none;
-
     height: 596mm;
     width: 210mm;
     ::-webkit-scrollbar {
@@ -80,13 +79,22 @@ const AnimatedContainer = styled(motion.div)`
   flex-direction: column;
 `;
 
-export const PageToPrint = React.forwardRef((props, ref) => {
-  //STATE
+const variants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 100, transition: { duration: 0.2 } },
+  exit: { opacity: 0, transition: { duration: 4 } },
+};
 
+const contVars = {
+  initial: { opacity: 0 },
+  animate: { opacity: 100, transition: { duration: 3 } },
+};
+
+export const PageToPrint = React.forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const visiblity = useSelector((state) => state.values.visibility);
-
   const state = useSelector((state) => state.values.values);
+
   useEffect(() => {
     document.addEventListener("keydown", () => {
       dispatch(setVisibility({ value: true }));
@@ -101,19 +109,6 @@ export const PageToPrint = React.forwardRef((props, ref) => {
     return () => clearTimeout(timer);
   }, [state]);
 
-  //STATE
-
-  const variants = {
-    initial: { opacity: 0 },
-    animate: { opacity: 100, transition: { duration: 0.2 } },
-    exit: { opacity: 0, transition: { duration: 4 } },
-  };
-
-  const contVars = {
-    initial: { opacity: 0 },
-    animate: { opacity: 100, transition: { duration: 3 } },
-  };
-  console.log(state);
   return (
     <PageToPrintt ref={ref}>
       <AnimatePresence>
@@ -125,9 +120,10 @@ export const PageToPrint = React.forwardRef((props, ref) => {
             exit="exit"
           />
         ) : (
-          ""
+          <></>
         )}
       </AnimatePresence>
+
       <AnimatedContainer
         variants={contVars}
         animate="animate"
@@ -135,25 +131,32 @@ export const PageToPrint = React.forwardRef((props, ref) => {
       >
         <PersonalDetails />
 
-        {state.forms.summary ? <Profile /> : null}
+        {state.forms.summary ? <Profile /> : <></>}
+
         {Object.keys(state.EmploymentHistory).length > 0 ? (
           <Values Accordion="EmploymentHistory" />
         ) : (
           <></>
         )}
+
         {Object.keys(state.Education).length > 0 ? (
           <Values Accordion="Education" />
         ) : (
           <></>
         )}
+
         {Object.keys(state.İnternShips).length > 0 ? (
           <Values Accordion="İnternShips" />
         ) : (
           <></>
         )}
+
         {Object.keys(state.Skills).length > 0 ? <Skills /> : null}
+
         {state.Hobbies?.hobbiesTextAera ? <Hobbies></Hobbies> : <></>}
+
         {Object.keys(state.References).length > 0 ? <References /> : <></>}
+
         {Object.keys(state.Languages).length > 0 ? <Languages /> : <></>}
       </AnimatedContainer>
     </PageToPrintt>

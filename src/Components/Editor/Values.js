@@ -76,7 +76,7 @@ const İnfos = styled.div`
 const Values = ({ Accordion }) => {
   const state = useSelector((state) => state.values.values[Accordion]);
   const accordions = Object.keys(state).map((accordion) => state[accordion]);
-  console.log(accordions);
+
   return (
     <Container>
       <Title>

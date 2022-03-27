@@ -16,7 +16,6 @@ const Container = styled.div`
 function AccordionSection({ type }) {
   const { Properties } = store.getState();
   const state = Properties[type];
-  console.log(state);
 
   return (
     <Container>
