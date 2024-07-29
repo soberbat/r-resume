@@ -1,13 +1,10 @@
+import { motion } from "framer-motion";
 import React, { useState } from "react";
-import styled from "styled-components";
-import "./logo/index.css";
-import Logo from "./logo/Logo";
+import { useDispatch } from "react-redux";
+import styled, { ThemeProvider } from "styled-components";
 import Editor from "./Components/Editor/Editor";
 import Infos from "./Components/İnfo/İnfos";
-import { motion } from "framer-motion";
-import Overlay from "./Components/Overlay";
-import { ThemeProvider } from "styled-components";
-import { useDispatch } from "react-redux";
+import "./logo/index.css";
 import { TogglePreviewVisibility } from "./store/AccordionSlice";
 
 const theme = {
@@ -32,12 +29,11 @@ const MainWrapper = styled.div`
 
 const ContainerProps = {
   id: "rmvt",
-  initial: { x: "100%" },
+  initial: { opacity: 0 },
   animate: {
-    x: 0,
+    opacity: 1,
     transition: {
-      delay: 1.8,
-      duration: 0.8,
+      duration: 1.5,
       ease: "easeInOut",
     },
   },
@@ -65,28 +61,20 @@ const PreviewEditor = styled.button`
 
 function App() {
   const [Info, setInfo] = useState([]);
-  const [AnimateLogo, setAnimateLogo] = useState(false);
+
   const dispatch = useDispatch();
   return (
     <ThemeProvider theme={theme}>
-      <MainWrapper onClick={() => setAnimateLogo(true)}>
-        {AnimateLogo ? (
-          <motion.div key="131344">
-            <Overlay />
-            <motion.div {...ContainerProps}>
-              <Infos setInfos={setInfo} />
-              <Editor Info={Info} />
-              <PreviewEditor
-                onClick={() => dispatch(TogglePreviewVisibility())}
-              >
-                Preview
-              </PreviewEditor>
-            </motion.div>
+      <MainWrapper>
+        <motion.div key="131344">
+          <motion.div {...ContainerProps}>
+            <Infos setInfos={setInfo} />
+            <Editor Info={Info} />
+            {/* <PreviewEditor onClick={() => dispatch(TogglePreviewVisibility())}>
+              Preview
+            </PreviewEditor> */}
           </motion.div>
-        ) : (
-          <></>
-        )}
-        <Logo AnimateLogo={AnimateLogo} />
+        </motion.div>
       </MainWrapper>
     </ThemeProvider>
   );
